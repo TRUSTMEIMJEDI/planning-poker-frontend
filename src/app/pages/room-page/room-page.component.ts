@@ -29,10 +29,11 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadUsers();
-    this.initializeWebSocketConnection();
+    // this.initializeWebSocketConnection();
     this.roomName = this.pokerService.currentUserValue.roomName;
     this.userName = this.pokerService.currentUserValue.userName;
     this.roomKey = this.pokerService.currentUserValue.roomKey;
+    // setInterval(() => this.loadUsers(), 1000);
   }
 
   ngOnDestroy(): void {
@@ -75,6 +76,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     // const serverUrl = 'http://192.168.0.30:8080/socket';
     const serverUrl = 'http://localhost:8080/socket';
     const ws = new SockJS(serverUrl);
+    ws.withCredentials = false;
     this.stompClient = Stomp.over(ws);
     const that = this;
     // tslint:disable-next-line:only-arrow-functions typedef

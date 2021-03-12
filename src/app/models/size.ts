@@ -5,6 +5,6 @@ export enum Size {
   M = 'M',
   L = 'L',
   XL = 'XL',
-  XXL = '2XL',
-  XXXL = '3XL'
+  XXL = 'XXL',
+  XXXL = 'XXXL'
 }
