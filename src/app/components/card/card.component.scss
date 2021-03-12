@@ -1,0 +1,20 @@
+.card {
+  width: 3.5rem;
+  height: 6rem;
+  border-radius: .8rem;
+  border: 2px solid #3993ff;
+  outline: 0;
+  cursor: pointer;
+  transition: all .09s linear;
+  color: #3993ff;
+  font-size: 1.3rem;
+  font-weight: bold;
+
+  &.selected {
+    color: #fff;
+    background: #3993ff;
+    border-color: transparent;
+    margin-top: -.8rem;
+  }
+
+}
