@@ -15,6 +15,9 @@
     height: 6rem;
     border-radius: .8rem;
     background: #e8e9ea;
+    &.active {
+      border: 3px solid #FF394A !important;
+    }
   }
 
   .card-showed {
@@ -32,6 +35,10 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border: 2px solid #3993ff;
+
+    &.active {
+      border: 3px solid #FF394A !important;
+    }
   }
 
   .card-hidden {
@@ -52,6 +59,9 @@
     background-size: 17px 17px;
     border: 1px solid rgba(168, 174, 178, .4);
     box-shadow: 0 2px 4px rgb(168 174 178 / 40%);
+    &.active {
+      border: 3px solid #ff394a !important;
+    }
   }
 
 }

@@ -2,9 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PokerService} from '../../services/poker.service';
 import {User} from '../../models/user';
 import {Size} from '../../models/size';
-
-declare var SockJS;
-declare var Stomp;
+import {RxStompService} from '@stomp/ng2-stompjs';
+import {Message} from '@stomp/stompjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-room-page',
@@ -22,21 +22,21 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   selectedSize: Size;
 
   private users: User[];
-  private stompClient;
+  private roomSub$: Subscription;
+  private revealSub$: Subscription;
 
-  constructor(private pokerService: PokerService) {
+  constructor(private pokerService: PokerService, private rxStompService: RxStompService) {
   }
 
   ngOnInit(): void {
+    this.initVariables();
     this.loadUsers();
-    // this.initializeWebSocketConnection();
-    this.roomName = this.pokerService.currentUserValue.roomName;
-    this.userName = this.pokerService.currentUserValue.userName;
-    this.roomKey = this.pokerService.currentUserValue.roomKey;
-    // setInterval(() => this.loadUsers(), 1000);
+    this.initializeWebSocketConnection();
   }
 
   ngOnDestroy(): void {
+    this.roomSub$.unsubscribe();
+    this.revealSub$.unsubscribe();
   }
 
   onClick(): void {
@@ -58,6 +58,12 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.prepareUsersList();
   }
 
+  private initVariables(): void {
+    this.roomName = this.pokerService.currentUserValue.roomName;
+    this.userName = this.pokerService.currentUserValue.userName;
+    this.roomKey = this.pokerService.currentUserValue.roomKey;
+  }
+
   private loadUsers(): void {
     this.pokerService.getAllUsersInRoom().then(data => {
       this.users = data;
@@ -73,45 +79,43 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   }
 
   private initializeWebSocketConnection(): void {
-    // const serverUrl = 'http://192.168.0.30:8080/socket';
-    const serverUrl = 'http://localhost:8080/socket';
-    const ws = new SockJS(serverUrl);
-    ws.withCredentials = false;
-    this.stompClient = Stomp.over(ws);
-    const that = this;
-    // tslint:disable-next-line:only-arrow-functions typedef
-    this.stompClient.connect({}, function(frame) {
-      that.stompClient.subscribe('/answer', (answer) => {
-        if (answer.body) {
-          console.log(answer.body);
+    this.roomSub$ = this.rxStompService.watch('/room/' + this.roomKey).subscribe((message: Message) => {
+      if (message.body) {
+        console.log(message.body);
+        this.users = JSON.parse(message.body);
+        this.prepareUsersList();
+      }
+    });
+    this.revealSub$ = this.rxStompService.watch('/room/' + this.roomKey + '/reveal').subscribe((message: Message) => {
+      if (message.body) {
+        console.log(message.body);
+        this.users = JSON.parse(message.body);
+        this.prepareUsersList();
+        this.isRevealed = !this.isRevealed;
+        if (!this.isRevealed) {
+          this.selectedSize = null;
         }
-      });
+      }
     });
   }
 
-  // sendMessage(message): void {
-  //   this.stompClient.send('/app/send/message' , {}, message);
-  // }
+  sendMessage(message): void {
+    this.rxStompService.publish({destination: '/app/send/answer', body: message});
+  }
 
   private cleanAnswers(): void {
-    this.pokerService.cleanAnswers().then(data => {
-      console.log(data);
-      this.users.forEach(user => {
-        user.answer = false;
-        user.size = null;
-      });
-      this.isRevealed = false;
-      this.selectedSize = null;
-      this.prepareUsersList();
-    });
+    this.pokerService.cleanAnswers();
   }
 
   private showCards(): void {
-    this.pokerService.showCards().then(data => {
-      this.users = data;
-      this.isRevealed = true;
-      this.prepareUsersList();
-    });
+    if (this.validateShowCards()) {
+      return;
+    }
+    this.pokerService.showCards();
+  }
+
+  private validateShowCards(): boolean {
+    return this.users.every(u => u.answer === false);
   }
 
 }

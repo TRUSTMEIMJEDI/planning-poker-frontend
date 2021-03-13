@@ -19,6 +19,8 @@ import {CardPickerComponent} from './components/card-picker/card-picker.componen
 import {MatGridListModule} from '@angular/material/grid-list';
 import {CardShowerComponent} from './components/card-shower/card-shower.component';
 import {FormsModule} from '@angular/forms';
+import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
+import {myRxStompConfig} from './pages/room-page/rx-stomp.config';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,17 @@ import {FormsModule} from '@angular/forms';
     MatGridListModule,
     FormsModule
   ],
-  providers: [],
+    providers: [
+      {
+        provide: InjectableRxStompConfig,
+        useValue: myRxStompConfig
+      },
+      {
+        provide: RxStompService,
+        useFactory: rxStompServiceFactory,
+        deps: [InjectableRxStompConfig]
+      }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
