@@ -21,7 +21,8 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   isRevealed = false;
   selectedSize: Size;
 
-  private users: User[];
+  users: User[];
+  answers: Size[];
   private roomSub$: Subscription;
   private revealSub$: Subscription;
 
@@ -90,6 +91,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       if (message.body) {
         console.log(message.body);
         this.users = JSON.parse(message.body);
+        this.answers = this.users.map(u => u.size);
         this.prepareUsersList();
         this.isRevealed = !this.isRevealed;
         if (!this.isRevealed) {

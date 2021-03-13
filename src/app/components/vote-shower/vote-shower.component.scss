@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 1rem;
+
+  p {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}

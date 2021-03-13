@@ -26,6 +26,7 @@
   <div class="picker-container">
     <app-card-picker *ngIf="!isRevealed" [selectedSize]="selectedSize"
       (wasCardClicked)="updateCard($event)"></app-card-picker>
+    <app-vote-shower *ngIf="isRevealed" [sizes]="answers"></app-vote-shower>
   </div>
 </div>
 
