@@ -1,21 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {User} from '../../models/user';
-import {Size} from '../../models/size';
 
 @Component({
   selector: 'app-card-shower',
   templateUrl: './card-shower.component.html',
   styleUrls: ['./card-shower.component.scss']
 })
-export class CardShowerComponent implements OnInit {
+export class CardShowerComponent {
 
   @Input() users: User[];
   @Input() activeUser: string;
 
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 
   getCardStyle(user: User): string {

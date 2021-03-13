@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {PokerService} from '../../services/poker.service';
 import {Router} from '@angular/router';
 
@@ -7,16 +7,13 @@ import {Router} from '@angular/router';
   templateUrl: './join-room.component.html',
   styleUrls: ['./join-room.component.scss']
 })
-export class JoinRoomComponent implements OnInit {
+export class JoinRoomComponent {
 
   roomKey: string;
   userName: string;
 
   constructor(private pokerService: PokerService,
               private router: Router) {
-  }
-
-  ngOnInit(): void {
   }
 
   joinRoom(): void {

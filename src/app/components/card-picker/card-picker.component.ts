@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Size} from '../../models/size';
 
 @Component({
@@ -6,7 +6,7 @@ import {Size} from '../../models/size';
   templateUrl: './card-picker.component.html',
   styleUrls: ['./card-picker.component.scss']
 })
-export class CardPickerComponent implements OnInit {
+export class CardPickerComponent {
 
   @Input() selectedSize: Size;
   @Output() wasCardClicked = new EventEmitter<Size>();
@@ -23,9 +23,6 @@ export class CardPickerComponent implements OnInit {
   ];
 
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 
   pickCardSize(size: Size): void {
