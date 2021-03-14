@@ -1,0 +1,22 @@
+<div class="center">
+  <div *ngIf="!allowed" class="container">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Podaj hasło</mat-label>
+        <input [(ngModel)]="password" matInput type="password" placeholder="Hasło">
+        <mat-icon matSuffix>password</mat-icon>
+        <mat-hint>Podaj hasło</mat-hint>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" (click)="login()">
+      Wejdź
+    </button>
+  </div>
+  <div *ngIf="allowed" class="container">
+    <button style="margin-bottom: .5rem" mat-raised-button color="primary" (click)="getRooms()">Odśwież</button>
+    <div class="row" *ngFor="let room of rooms; let i = index">
+      <li>Nazwa pokoju: {{ room.name }}, Kod pokoju: {{ room.key }}</li>
+      <button mat-raised-button color="secondary" (click)="deleteRoom(rooms[i].key)">Usuń pokój</button>
+    </div>
+  </div>
+</div>

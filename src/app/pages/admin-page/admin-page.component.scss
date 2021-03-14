@@ -1,0 +1,29 @@
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      margin-bottom: 1rem;
+
+      li {
+        list-style-type: none;
+        margin-right: .5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+}

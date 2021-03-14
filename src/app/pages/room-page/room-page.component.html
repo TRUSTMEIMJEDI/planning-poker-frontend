@@ -1,7 +1,10 @@
 <div class="container">
   <div class="top-container">
     <p>{{ roomName }} | Kod: {{ roomKey }}</p>
-    <button mat-raised-button>Usuń pokój</button>
+    <div>
+      <button style="margin-right: .5rem" mat-raised-button (click)="background()">Stop tło</button>
+      <button mat-raised-button (click)="leaveRoom()">Wyjdź z pokój</button>
+    </div>
   </div>
   <mat-grid-list cols="8" rowHeight="10rem">
     <mat-grid-tile [colspan]="2"></mat-grid-tile>

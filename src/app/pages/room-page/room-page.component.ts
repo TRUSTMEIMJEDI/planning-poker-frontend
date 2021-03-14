@@ -5,6 +5,7 @@ import {Size} from '../../models/size';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import {Message} from '@stomp/stompjs';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-room-page',
@@ -26,7 +27,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   private roomSub$: Subscription;
   private revealSub$: Subscription;
 
-  constructor(private pokerService: PokerService, private rxStompService: RxStompService) {
+  constructor(private pokerService: PokerService, private rxStompService: RxStompService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -53,10 +54,24 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     const user = this.users.find(u => u.name === this.userName);
     this.selectedSize = this.selectedSize === size ? null : size;
     user.answer = this.selectedSize != null;
-    this.pokerService.sendAnswer(this.selectedSize).then(data => {
-      console.log(data);
-    });
-    this.prepareUsersList();
+    this.pokerService.sendAnswer(this.selectedSize);
+  }
+
+  leaveRoom(): void {
+    this.pokerService.leaveRoom().subscribe((data) => {
+      if (data === true) {
+        this.router.navigate(['/home']);
+      }
+    },
+    () => {
+      this.pokerService.logout();
+      this.router.navigate(['/home']);
+    }
+    );
+  }
+
+  background(): void {
+    document.getElementById('gradient').style.background = 'white';
   }
 
   private initVariables(): void {
@@ -82,7 +97,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(): void {
     this.roomSub$ = this.rxStompService.watch('/room/' + this.roomKey).subscribe((message: Message) => {
       if (message.body) {
-        console.log(message.body);
         this.users = JSON.parse(message.body);
         this.prepareUsersList();
       }
@@ -101,9 +115,9 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  sendMessage(message): void {
-    this.rxStompService.publish({destination: '/app/send/answer', body: message});
-  }
+  // sendMessage(message): void {
+  //   this.rxStompService.publish({destination: '/app/send/answer', body: message});
+  // }
 
   private cleanAnswers(): void {
     this.pokerService.cleanAnswers();

@@ -22,6 +22,7 @@ import {FormsModule} from '@angular/forms';
 import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import {myRxStompConfig} from './pages/room-page/rx-stomp.config';
 import { VoteShowerComponent } from './components/vote-shower/vote-shower.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { VoteShowerComponent } from './components/vote-shower/vote-shower.compon
     UserCardComponent,
     CardPickerComponent,
     CardShowerComponent,
-    VoteShowerComponent
+    VoteShowerComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
