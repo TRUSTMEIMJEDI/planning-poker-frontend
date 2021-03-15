@@ -6,13 +6,15 @@ import {Auth} from '../models/auth';
 import {map} from 'rxjs/operators';
 import {Size} from '../models/size';
 import {Room} from '../models/room';
+import {PokerUtils} from '../utils/poker-utils';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 // const BASE_URL = 'http://192.168.0.30:8080/';
-const BASE_URL = 'http://localhost:8080/';
+// const BASE_URL = 'http://localhost:8080/';
+const BASE_URL = PokerUtils.getUrl();
 
 @Injectable({
   providedIn: 'root'

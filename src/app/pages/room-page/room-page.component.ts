@@ -103,7 +103,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     });
     this.revealSub$ = this.rxStompService.watch('/room/' + this.roomKey + '/reveal').subscribe((message: Message) => {
       if (message.body) {
-        console.log(message.body);
         this.users = JSON.parse(message.body);
         this.answers = this.users.map(u => u.size);
         this.prepareUsersList();
