@@ -59,19 +59,12 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   leaveRoom(): void {
     this.pokerService.leaveRoom().subscribe((data) => {
-        if (data === true) {
-          this.router.navigate(['/home']);
-        }
+        this.routeToHomeAndLogout();
       },
       () => {
-        this.pokerService.logout();
-        this.router.navigate(['/home']);
+        this.routeToHomeAndLogout();
       }
     );
-  }
-
-  background(): void {
-    document.getElementById('gradient').style.background = 'white';
   }
 
   private initVariables(): void {
@@ -84,6 +77,8 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.pokerService.getAllUsersInRoom().then(data => {
       this.users = data;
       this.prepareUsersList();
+    }, () => {
+      this.routeToHomeAndLogout();
     });
   }
 
@@ -96,9 +91,12 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   private initializeWebSocketConnection(): void {
     this.roomSub$ = this.rxStompService.watch('/room/' + this.roomKey).subscribe((message: Message) => {
-      if (message.body) {
-        this.users = JSON.parse(message.body);
+      const users = JSON.parse(message.body);
+      if (users.length > 0) {
+        this.users = users;
         this.prepareUsersList();
+      } else {
+        this.routeToHomeAndLogout();
       }
     });
     this.revealSub$ = this.rxStompService.watch('/room/' + this.roomKey + '/reveal').subscribe((message: Message) => {
@@ -113,10 +111,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-  // sendMessage(message): void {
-  //   this.rxStompService.publish({destination: '/app/send/answer', body: message});
-  // }
 
   private cleanAnswers(): void {
     this.pokerService.cleanAnswers();
@@ -135,6 +129,12 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   private isAnswered(): boolean {
     return this.users.every(u => u.answer === false);
+  }
+
+  private routeToHomeAndLogout(): void {
+    this.router.navigate(['/home']).then(() => {
+      this.pokerService.logout();
+    });
   }
 
 }
