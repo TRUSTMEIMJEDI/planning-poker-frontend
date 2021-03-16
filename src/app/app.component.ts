@@ -1,4 +1,4 @@
-import {AfterContentInit, Component} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,14 @@ import {AfterContentInit, Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'planning-poker';
+
+  background(): void {
+    const style = document.getElementById('gradient').style.background;
+    if (style.match('white')) {
+      document.getElementById('gradient').style.background = '';
+    } else {
+      document.getElementById('gradient').style.background = 'white';
+    }
+  }
+
 }

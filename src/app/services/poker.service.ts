@@ -52,8 +52,8 @@ export class PokerService {
       }));
   }
 
-  async getAllUsersInRoom(): Promise<User[]> {
-    return await this.http.get<User[]>(`${BASE_URL}${this.currentUserSubject.getValue().roomKey}/users`, httpOptions).toPromise();
+  getAllUsersInRoom(): Promise<User[]> {
+    return this.http.get<User[]>(`${BASE_URL}${this.currentUserSubject.getValue().roomKey}/users`, httpOptions).toPromise();
   }
 
   joinRoom(roomKey: string, userName: string): Observable<Auth> {
@@ -81,14 +81,7 @@ export class PokerService {
       userKey: this.currentUserValue.userKey
     };
 
-    return this.http.post<any>(`${BASE_URL}leaveRoom`, body, httpOptions).pipe(map(res => {
-      if (res.match('OK')) {
-        this.logout();
-        return true;
-      }
-
-      return false;
-    }));
+    return this.http.post<any>(`${BASE_URL}leaveRoom`, body, httpOptions);
   }
 
   sendAnswer(size: Size): void {
