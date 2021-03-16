@@ -21,8 +21,9 @@ import {CardShowerComponent} from './components/card-shower/card-shower.componen
 import {FormsModule} from '@angular/forms';
 import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import {myRxStompConfig} from './pages/room-page/rx-stomp.config';
-import { VoteShowerComponent } from './components/vote-shower/vote-shower.component';
-import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import {VoteShowerComponent} from './components/vote-shower/vote-shower.component';
+import {AdminPageComponent} from './pages/admin-page/admin-page.component';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -51,17 +52,21 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
     MatGridListModule,
     FormsModule
   ],
-    providers: [
-      {
-        provide: InjectableRxStompConfig,
-        useValue: myRxStompConfig
-      },
-      {
-        provide: RxStompService,
-        useFactory: rxStompServiceFactory,
-        deps: [InjectableRxStompConfig]
-      }
-    ],
+  providers: [
+    {
+      provide: InjectableRxStompConfig,
+      useValue: myRxStompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -59,14 +59,14 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   leaveRoom(): void {
     this.pokerService.leaveRoom().subscribe((data) => {
-      if (data === true) {
+        if (data === true) {
+          this.router.navigate(['/home']);
+        }
+      },
+      () => {
+        this.pokerService.logout();
         this.router.navigate(['/home']);
       }
-    },
-    () => {
-      this.pokerService.logout();
-      this.router.navigate(['/home']);
-    }
     );
   }
 
@@ -106,7 +106,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
         this.users = JSON.parse(message.body);
         this.answers = this.users.map(u => u.size);
         this.prepareUsersList();
-        this.isRevealed = !this.isRevealed;
+        this.isRevealed = !this.isAnswered();
         if (!this.isRevealed) {
           this.selectedSize = null;
         }
@@ -130,6 +130,10 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   }
 
   private validateShowCards(): boolean {
+    return this.users.every(u => u.answer === false);
+  }
+
+  private isAnswered(): boolean {
     return this.users.every(u => u.answer === false);
   }
 
