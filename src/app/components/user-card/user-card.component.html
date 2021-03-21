@@ -1,6 +1,15 @@
 <div class="container">
-  <div class="card-{{ cardStyle }}">
-    <div *ngIf="cardStyle.match('showed')">{{ size }}</div>
+  <div *ngIf="!observer">
+    <div class="card-{{ cardStyle }}">
+      <div *ngIf="cardStyle.match('showed')">
+        {{ size }}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="observer" class="card-{{ cardStyle }}">
+    <div class="card-observer">
+      🙊
+    </div>
   </div>
   <p>{{ userName }}</p>
 </div>

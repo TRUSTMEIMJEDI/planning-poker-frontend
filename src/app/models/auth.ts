@@ -3,4 +3,5 @@ export class Auth {
   roomName: string;
   userKey: string;
   userName: string;
+  observer: boolean;
 }

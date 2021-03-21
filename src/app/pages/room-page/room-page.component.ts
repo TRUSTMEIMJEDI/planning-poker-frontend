@@ -20,6 +20,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   roomKey: string;
   userName: string;
   isRevealed = false;
+  observer = false;
   selectedSize: Size;
 
   users: User[];
@@ -71,6 +72,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.roomName = this.pokerService.currentUserValue.roomName;
     this.userName = this.pokerService.currentUserValue.userName;
     this.roomKey = this.pokerService.currentUserValue.roomKey;
+    this.observer = this.pokerService.currentUserValue.observer;
   }
 
   private loadUsers(): void {

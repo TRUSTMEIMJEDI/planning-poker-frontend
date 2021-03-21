@@ -6,4 +6,5 @@ export class User {
   point: number;
   answer: boolean;
   owner: boolean;
+  observer: false;
 }

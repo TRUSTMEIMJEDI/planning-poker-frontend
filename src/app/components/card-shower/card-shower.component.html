@@ -2,6 +2,7 @@
   <div *ngFor="let user of users; let i = index">
     <app-user-card [size]="user.size"
                    [userName]="user.name"
+                   [observer]="user.observer"
                    [cardStyle]="getCardStyle(user)">
     </app-user-card>
   </div>
