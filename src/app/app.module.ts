@@ -24,9 +24,10 @@ import { myRxStompConfig } from './pages/room-page/rx-stomp.config';
 import { VoteShowerComponent } from './components/vote-shower/vote-shower.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations : [
@@ -46,6 +47,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    ClipboardModule,
     MatSliderModule,
     MatSnackBarModule,
     MatSlideToggleModule,
