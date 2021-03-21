@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Size} from '../../models/size';
+import { Component, Input, OnInit } from '@angular/core';
+import { Size } from '../../models/size';
 
 @Component({
-  selector: 'app-vote-shower',
-  templateUrl: './vote-shower.component.html',
-  styleUrls: ['./vote-shower.component.scss']
+  selector : 'app-vote-shower',
+  templateUrl : './vote-shower.component.html',
+  styleUrls : [ './vote-shower.component.scss' ]
 })
 export class VoteShowerComponent implements OnInit {
 
@@ -16,7 +16,14 @@ export class VoteShowerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.uniqueSizes = [...new Set(this.sizes)];
+    this.uniqueSizes = [ ...new Set(this.sizes) ];
+  }
+
+  getSizeText(size: Size): string {
+    if (size == null) {
+      return '';
+    }
+    return Size[ size ];
   }
 
   countSize(size: Size): number {

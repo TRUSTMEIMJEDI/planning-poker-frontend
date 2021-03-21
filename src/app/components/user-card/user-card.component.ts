@@ -15,4 +15,11 @@ export class UserCardComponent {
 
   constructor() {}
 
+  getSizeText(size: string): string {
+    if (size == null) {
+      return '';
+    }
+    return Size[ size ];
+  }
+
 }

@@ -91,7 +91,7 @@ export class PokerService {
     const body = {
       roomKey : this.currentUserValue.roomKey,
       userKey : this.currentUserValue.userKey,
-      size
+      size : Object.keys(Size).filter(x => Size[ x ] === size)[0]
     };
     this.http.post<any>(`${ BASE_URL }answer`, body, httpOptions).toPromise();
   }

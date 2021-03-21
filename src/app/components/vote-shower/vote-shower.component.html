@@ -1,6 +1,6 @@
 <div *ngFor="let size of uniqueSizes">
   <div class="container" *ngIf="size != null">
-    <app-card [text]="size"></app-card>
+    <app-card [text]="getSizeText(size)"></app-card>
     <p>{{ countSize(size) }}</p>
   </div>
 </div>

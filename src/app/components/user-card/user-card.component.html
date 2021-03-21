@@ -2,7 +2,7 @@
   <div *ngIf="!observer">
     <div class="card-{{ cardStyle }}">
       <div *ngIf="cardStyle.match('showed')">
-        {{ size }}
+        {{ getSizeText(size) }}
       </div>
     </div>
   </div>
