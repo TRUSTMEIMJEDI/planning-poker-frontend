@@ -53,13 +53,16 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     return `${ window.location.origin }/#/join-room?u=${ btoa(this.roomKey) }`;
   }
 
-  onClick(): void {
-    if (this.isRevealed) {
-      this.cleanAnswers();
+  cleanAnswers(): void {
+    this.pokerService.cleanAnswers();
+  }
+
+  showCards(): void {
+    if (this.validateShowCards()) {
       return;
     }
 
-    this.showCards();
+    this.pokerService.showCards();
   }
 
   updateCard(size: Size): void {
@@ -129,17 +132,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }
-
-  private cleanAnswers(): void {
-    this.pokerService.cleanAnswers();
-  }
-
-  private showCards(): void {
-    if (this.validateShowCards()) {
-      return;
-    }
-    this.pokerService.showCards();
   }
 
   private validateShowCards(): boolean {
