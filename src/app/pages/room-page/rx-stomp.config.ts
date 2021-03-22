@@ -3,8 +3,6 @@ import { PokerUtils } from '../../utils/poker-utils';
 
 export const myRxStompConfig: InjectableRxStompConfig = {
   // Which server?
-  // brokerURL: 'ws://192.168.0.30:8080/socket',
-  // brokerURL: 'ws://localhost:8080/socket',
   brokerURL : PokerUtils.getBrokerUrl(),
 
   // Headers
