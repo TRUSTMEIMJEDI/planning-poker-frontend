@@ -1,37 +1,37 @@
 <div class="container">
   <div class="top-container">
     <p>{{ roomName }} | Kod: {{ roomKey }}
-      <button mat-button [cdkCopyToClipboard]="roomKey">
+      <button [cdkCopyToClipboard]="roomKey" mat-button>
         <mat-icon>content_copy</mat-icon>
       </button>
     </p>
     <div>
-      <button mat-raised-button (click)="leaveRoom()">Wyjdź z pokój</button>
+      <button (click)="leaveRoom()" mat-raised-button>Wyjdź z pokój</button>
     </div>
   </div>
   <mat-grid-list cols="8" rowHeight="10rem">
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="4">
-      <app-card-shower [users]="users1" [activeUser]="userName"></app-card-shower>
+      <app-card-shower [activeUser]="userName" [users]="users1"></app-card-shower>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="2">
       <div class="table">
-        <button mat-raised-button (click)="onClick()">{{ isRevealed ? 'Następne głosowanie' : 'Odkryj karty' }}</button>
+        <button (click)="onClick()" mat-raised-button>{{ isRevealed ? 'Następne głosowanie' : 'Odkryj karty' }}</button>
       </div>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="4">
-      <app-card-shower [users]="users2" [activeUser]="userName"></app-card-shower>
+      <app-card-shower [activeUser]="userName" [users]="users2"></app-card-shower>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
   </mat-grid-list>
 
   <div *ngIf="!observer" class="picker-container">
-    <app-card-picker *ngIf="!isRevealed" [selectedSize]="selectedSize"
-                     (wasCardClicked)="updateCard($event)"></app-card-picker>
+    <app-card-picker (wasCardClicked)="updateCard($event)" *ngIf="!isRevealed"
+                     [selectedSize]="selectedSize"></app-card-picker>
     <app-vote-shower *ngIf="isRevealed" [sizes]="answers"></app-vote-shower>
   </div>
 </div>

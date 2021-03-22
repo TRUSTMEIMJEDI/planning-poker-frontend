@@ -1,6 +1,6 @@
-<div class="container" *ngFor="let card of cards; let i = index">
-  <app-card [text]="card"
+<div *ngFor="let card of cards; let i = index" class="container">
+  <app-card (wasCardClicked)="pickCardSize($event)"
             [size]="selectedSize"
-            (wasCardClicked)="pickCardSize($event)">
+            [text]="card">
   </app-card>
 </div>

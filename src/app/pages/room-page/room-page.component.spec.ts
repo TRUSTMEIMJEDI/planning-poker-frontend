@@ -8,9 +8,9 @@ describe('RoomPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoomPageComponent ]
+      declarations : [ RoomPageComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

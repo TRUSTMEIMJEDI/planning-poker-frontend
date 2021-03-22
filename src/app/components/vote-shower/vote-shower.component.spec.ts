@@ -8,9 +8,9 @@ describe('VoteShowerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VoteShowerComponent ]
+      declarations : [ VoteShowerComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
