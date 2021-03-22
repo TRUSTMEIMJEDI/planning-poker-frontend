@@ -29,13 +29,41 @@
     padding: 0 1.6rem;
     background: #d7e9ff;
     border-radius: 2.8rem;
-    height: 70%;
+    height: 90%;
     width: 70%;
     margin: 0 auto;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .show-cards-btn {
+      font-size: 1.1rem;
+      padding: 0.3rem 1.2rem 0.3rem 1.2rem;
+      border-radius: 1.8rem;
+    }
+
+    .next-voting-btn {
+      align-self: flex-end;
+      width: 100%;
+      background: #393737;
+      position: absolute;
+      height: 3rem;
+      border-radius: 0 0 2.8rem 2.8rem;
+      color: white;
+      text-align: center;
+      padding-top: 1rem;
+
+      span {
+        font-size: 1.3rem;
+      }
+
+    }
+
+    .next-voting-btn:hover {
+      cursor: pointer;
+    }
+
   }
 
   .picker-container {
