@@ -1,12 +1,15 @@
 <div class="container">
   <div class="top-container">
-    <p>{{ roomName }} | Kod: {{ roomKey }}
-      <button [cdkCopyToClipboard]="roomKey" mat-button>
-        <mat-icon>content_copy</mat-icon>
+    <div class="room-info-container">
+      <span>
+        {{ roomName }} | Kod: {{ roomKey }}
+      </span>
+      <button [cdkCopyToClipboard]="getShareLink()" mat-button>
+        <mat-icon>share</mat-icon>
       </button>
-    </p>
+    </div>
     <div>
-      <button (click)="leaveRoom()" mat-raised-button>Wyjdź z pokój</button>
+      <button (click)="leaveRoom()" mat-raised-button>Wyjdź z pokoju</button>
     </div>
   </div>
   <mat-grid-list cols="8" rowHeight="10rem">
