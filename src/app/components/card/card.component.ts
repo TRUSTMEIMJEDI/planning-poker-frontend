@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Size} from '../../models/size';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Size } from '../../models/size';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  selector : 'app-card',
+  templateUrl : './card.component.html',
+  styleUrls : [ './card.component.scss' ]
 })
 export class CardComponent {
 

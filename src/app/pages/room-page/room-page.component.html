@@ -1,6 +1,10 @@
 <div class="container">
   <div class="top-container">
-    <p>{{ roomName }} | Kod: {{ roomKey }}</p>
+    <p>{{ roomName }} | Kod: {{ roomKey }}
+      <button mat-button [cdkCopyToClipboard]="roomKey">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+    </p>
     <div>
       <button mat-raised-button (click)="leaveRoom()">Wyjdź z pokój</button>
     </div>
@@ -27,7 +31,7 @@
 
   <div *ngIf="!observer" class="picker-container">
     <app-card-picker *ngIf="!isRevealed" [selectedSize]="selectedSize"
-      (wasCardClicked)="updateCard($event)"></app-card-picker>
+                     (wasCardClicked)="updateCard($event)"></app-card-picker>
     <app-vote-shower *ngIf="isRevealed" [sizes]="answers"></app-vote-shower>
   </div>
 </div>
