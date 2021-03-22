@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Auth } from '../models/auth';
 import { map } from 'rxjs/operators';
 import { Size } from '../models/size';
 import { Room } from '../models/room';
 import { PokerUtils } from '../utils/poker-utils';
+import { UserService } from './user.service';
 
 const httpOptions = {
   headers : new HttpHeaders({ 'Content-Type' : 'application/json' })
@@ -18,16 +19,11 @@ const BASE_URL = PokerUtils.getUrl();
   providedIn : 'root'
 })
 export class PokerService {
-  public currentUser: Observable<Auth>;
-  private currentUserSubject: BehaviorSubject<Auth>;
 
-  constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<Auth>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
-  }
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   public get currentUserValue(): Auth {
-    return this.currentUserSubject.value;
+    return this.userService.currentUserValue;
   }
 
   createRoomWithOwner(roomName: string, userName: string): Observable<Auth> {
@@ -46,7 +42,7 @@ export class PokerService {
           observer : false
         };
         localStorage.setItem('currentUser', JSON.stringify(userData));
-        this.currentUserSubject.next(userData);
+        this.userService.setCurrentUserSubject(userData);
         return userData;
       }));
   }
@@ -67,7 +63,7 @@ export class PokerService {
             observer : responseData.observer
           };
           localStorage.setItem('currentUser', JSON.stringify(userData));
-          this.currentUserSubject.next(userData);
+          this.userService.setCurrentUserSubject(userData);
           return userData;
         }));
   }
@@ -112,7 +108,7 @@ export class PokerService {
 
   logout(): void {
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    this.userService.setCurrentUserSubject(null);
   }
 
 }
