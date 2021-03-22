@@ -33,13 +33,20 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initVariables();
+    if (!this.pokerService.currentUserValue) {
+      return;
+    }
     this.loadUsers();
     this.initializeWebSocketConnection();
   }
 
   ngOnDestroy(): void {
-    this.roomSub$.unsubscribe();
-    this.revealSub$.unsubscribe();
+    if (this.roomSub$) {
+      this.roomSub$.unsubscribe();
+    }
+    if (this.revealSub$) {
+      this.revealSub$.unsubscribe();
+    }
   }
 
   getShareLink(): string {
@@ -73,10 +80,16 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   }
 
   private initVariables(): void {
-    this.roomName = this.pokerService.currentUserValue.roomName;
-    this.userName = this.pokerService.currentUserValue.userName;
-    this.roomKey = this.pokerService.currentUserValue.roomKey;
-    this.observer = this.pokerService.currentUserValue.observer;
+    const auth = this.pokerService.currentUserValue;
+    if (!auth) {
+      this.routeToHomeAndLogout();
+      return;
+    }
+
+    this.roomName = auth.roomName;
+    this.userName = auth.userName;
+    this.roomKey = auth.roomKey;
+    this.observer = auth.observer;
   }
 
   private loadUsers(): void {
