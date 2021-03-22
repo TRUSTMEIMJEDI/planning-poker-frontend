@@ -42,6 +42,10 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.revealSub$.unsubscribe();
   }
 
+  getShareLink(): string {
+    return `${ window.location.origin }/#/join-room?u=${ btoa(this.roomKey) }`;
+  }
+
   onClick(): void {
     if (this.isRevealed) {
       this.cleanAnswers();

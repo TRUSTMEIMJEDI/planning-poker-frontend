@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PokerService } from '../../services/poker.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl : './join-room.component.html',
   styleUrls : [ './join-room.component.scss' ]
 })
-export class JoinRoomComponent {
+export class JoinRoomComponent implements OnInit {
 
   roomKey: string;
   userName: string;
@@ -16,7 +16,14 @@ export class JoinRoomComponent {
 
   constructor(private pokerService: PokerService,
               private router: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private activatedRoute: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.roomKey = atob(params.u);
+    });
   }
 
   joinRoom(): void {

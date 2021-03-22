@@ -8,9 +8,9 @@ describe('CardPickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardPickerComponent ]
+      declarations : [ CardPickerComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -20,8 +20,8 @@ const BASE_URL = PokerUtils.getUrl();
   providedIn : 'root'
 })
 export class PokerService {
-  private currentUserSubject: BehaviorSubject<Auth>;
   public currentUser: Observable<Auth>;
+  private currentUserSubject: BehaviorSubject<Auth>;
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<Auth>(JSON.parse(localStorage.getItem('currentUser')));

@@ -1,9 +1,9 @@
 <div *ngIf="users != null && users.length > 0" class="container">
   <div *ngFor="let user of users; let i = index">
-    <app-user-card [size]="user.size"
-                   [userName]="user.name"
+    <app-user-card [cardStyle]="getCardStyle(user)"
                    [observer]="user.observer"
-                   [cardStyle]="getCardStyle(user)">
+                   [size]="user.size"
+                   [userName]="user.name">
     </app-user-card>
   </div>
 </div>

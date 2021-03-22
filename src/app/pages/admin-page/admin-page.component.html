@@ -3,20 +3,20 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Podaj hasło</mat-label>
-        <input [(ngModel)]="password" matInput type="password" placeholder="Hasło">
+        <input [(ngModel)]="password" matInput placeholder="Hasło" type="password">
         <mat-icon matSuffix>password</mat-icon>
         <mat-hint>Podaj hasło</mat-hint>
       </mat-form-field>
     </p>
-    <button mat-raised-button color="primary" (click)="login()">
+    <button (click)="login()" color="primary" mat-raised-button>
       Wejdź
     </button>
   </div>
   <div *ngIf="allowed" class="container">
-    <button style="margin-bottom: .5rem" mat-raised-button color="primary" (click)="getRooms()">Odśwież</button>
-    <div class="row" *ngFor="let room of rooms; let i = index">
+    <button (click)="getRooms()" color="primary" mat-raised-button style="margin-bottom: .5rem">Odśwież</button>
+    <div *ngFor="let room of rooms; let i = index" class="row">
       <li>Nazwa pokoju: {{ room.name }}, Kod pokoju: {{ room.key }}</li>
-      <button mat-raised-button color="secondary" (click)="deleteRoom(rooms[i].key)">Usuń pokój</button>
+      <button (click)="deleteRoom(rooms[i].key)" color="secondary" mat-raised-button>Usuń pokój</button>
     </div>
   </div>
 </div>

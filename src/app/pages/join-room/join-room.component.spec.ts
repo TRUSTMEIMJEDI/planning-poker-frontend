@@ -8,9 +8,9 @@ describe('JoinRoomComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JoinRoomComponent ]
+      declarations : [ JoinRoomComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

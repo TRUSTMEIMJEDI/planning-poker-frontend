@@ -1,26 +1,24 @@
-<div class="center" (keyup.enter)="createRoom()">
+<div (keyup.enter)="createRoom()" class="center">
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Podaj nazwę pokoju</mat-label>
-      <input [(ngModel)]="roomName" matInput type="text" placeholder="Nazwa">
+      <input [(ngModel)]="roomName" matInput placeholder="Nazwa" type="text">
       <mat-icon matSuffix>meeting_room</mat-icon>
-      <mat-hint>Podaj nazwę pokoju</mat-hint>
     </mat-form-field>
   </p>
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Podaj pseudonim</mat-label>
-      <input [(ngModel)]="userName" matInput type="text" placeholder="Pseudonim">
+      <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text">
       <mat-icon matSuffix>attribution</mat-icon>
-      <mat-hint>Podaj pseudonim</mat-hint>
     </mat-form-field>
   </p>
   <div style="display: flex; flex-direction: column">
-    <button mat-raised-button color="primary" (click)="createRoom()">
+    <button (click)="createRoom()" color="primary" mat-raised-button>
       Utwórz pokój
     </button>
     <br>
-    <button mat-raised-button color="secondary" routerLink="/home">
+    <button color="secondary" mat-raised-button routerLink="/home">
       Wstecz
     </button>
   </div>

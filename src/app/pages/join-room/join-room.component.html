@@ -1,29 +1,27 @@
-<div class="center" (keyup.enter)="joinRoom()">
+<div (keyup.enter)="joinRoom()" class="center">
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Podaj kod do pokoju</mat-label>
-      <input [(ngModel)]="roomKey" matInput type="text" placeholder="Kod">
+      <input [(ngModel)]="roomKey" matInput placeholder="Kod" type="text">
       <mat-icon matSuffix>vpn_key</mat-icon>
-      <mat-hint>Podaj kod do pokoju</mat-hint>
     </mat-form-field>
   </p>
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Podaj pseudonim</mat-label>
-      <input [(ngModel)]="userName" matInput type="text" placeholder="Pseudonim">
+      <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text">
       <mat-icon matSuffix>attribution</mat-icon>
-      <mat-hint>Podaj pseudonim</mat-hint>
     </mat-form-field>
   </p>
 
   <mat-slide-toggle [(ngModel)]="observer">Obserwator</mat-slide-toggle>
 
   <div style="display: flex; flex-direction: column">
-    <button mat-raised-button color="primary" (click)="joinRoom()">
+    <button (click)="joinRoom()" color="primary" mat-raised-button>
       Wejdź do pokoju
     </button>
     <br>
-    <button mat-raised-button color="secondary" routerLink="/home">
+    <button color="secondary" mat-raised-button routerLink="/home">
       Wstecz
     </button>
   </div>

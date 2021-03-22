@@ -4,17 +4,23 @@
   justify-content: center;
   align-content: center;
 
+  .room-info-container {
+    display: flex;
+    align-items: center;
+  }
+
   .top-container {
     margin: 20px 20px 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    p {
+    span {
       color: black;
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: bold;
     }
+
   }
 
   .table {
@@ -33,6 +39,6 @@
   }
 
   .picker-container {
-    margin: 50px 35% 0 35% ;
+    margin: 50px 35% 0 35%;
   }
 }

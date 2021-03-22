@@ -1,5 +1,5 @@
-<button class="card"
+<button (click)="onCardClicked()"
         [ngClass]="{'selected': text === size}"
-        (click)="onCardClicked()">
+        class="card">
   {{ text }}
 </button>
