@@ -35,7 +35,6 @@ export class JoinRoomComponent implements OnInit {
         this.router.navigate([ '/room' ]);
       },
       error => {
-        console.log(error.error.message);
         this.snackBar.open(error.error.message, 'OK', {
           duration : 2000
         });

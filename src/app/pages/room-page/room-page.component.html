@@ -4,7 +4,9 @@
       <span>
         {{ roomName }} | Kod: {{ roomKey }}
       </span>
-      <button [cdkCopyToClipboard]="getShareLink()" mat-button>
+      <button [cdkCopyToClipboard]="getShareLink()"
+              (click)="snackBarOpen()"
+              style="margin-left: 5px" mat-button>
         <mat-icon>share</mat-icon>
       </button>
     </div>
@@ -27,6 +29,7 @@
                 mat-raised-button>
           <span>Odkryj karty</span>
         </button>
+        <app-vote-shower *ngIf="isRevealed" [sizes]="answers"></app-vote-shower>
         <div *ngIf="isRevealed"
              (click)="cleanAnswers()"
              class="next-voting-btn">
@@ -45,7 +48,7 @@
   <div class="picker-container">
     <app-card-picker (wasCardClicked)="updateCard($event)" *ngIf="!isRevealed && !observer"
                      [selectedSize]="selectedSize"></app-card-picker>
-    <app-vote-shower *ngIf="isRevealed" [sizes]="answers"></app-vote-shower>
+
   </div>
 </div>
 
