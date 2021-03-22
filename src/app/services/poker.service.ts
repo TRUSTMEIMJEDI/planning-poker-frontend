@@ -12,8 +12,6 @@ const httpOptions = {
   headers : new HttpHeaders({ 'Content-Type' : 'application/json' })
 };
 
-// const BASE_URL = 'http://192.168.0.30:8080/';
-// const BASE_URL = 'http://localhost:8080/';
 const BASE_URL = PokerUtils.getUrl();
 
 @Injectable({
@@ -54,7 +52,7 @@ export class PokerService {
   }
 
   getAllUsersInRoom(): Promise<User[]> {
-    return this.http.get<User[]>(`${ BASE_URL }${ this.currentUserSubject.getValue().roomKey }/users`, httpOptions).toPromise();
+    return this.http.get<User[]>(`${ BASE_URL }${ this.currentUserValue.roomKey }/users`, httpOptions).toPromise();
   }
 
   joinRoom(roomKey: string, userName: string, isObserver: boolean): Observable<Auth> {
