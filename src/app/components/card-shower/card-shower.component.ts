@@ -1,10 +1,10 @@
-import {Component, Input} from '@angular/core';
-import {User} from '../../models/user';
+import { Component, Input } from '@angular/core';
+import { User } from '../../models/user';
 
 @Component({
-  selector: 'app-card-shower',
-  templateUrl: './card-shower.component.html',
-  styleUrls: ['./card-shower.component.scss']
+  selector : 'app-card-shower',
+  templateUrl : './card-shower.component.html',
+  styleUrls : [ './card-shower.component.scss' ]
 })
 export class CardShowerComponent {
 

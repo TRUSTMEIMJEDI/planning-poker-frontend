@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {PokerService} from '../../services/poker.service';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { PokerService } from '../../services/poker.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-room',
-  templateUrl: './create-room.component.html',
-  styleUrls: ['./create-room.component.scss']
+  selector : 'app-create-room',
+  templateUrl : './create-room.component.html',
+  styleUrls : [ './create-room.component.scss' ]
 })
 export class CreateRoomComponent {
 
@@ -22,7 +22,7 @@ export class CreateRoomComponent {
     }
 
     this.pokerService.createRoomWithOwner(this.roomName, this.userName).subscribe(() => {
-      this.router.navigate(['/room']);
+      this.router.navigate([ '/room' ]);
     });
   }
 
