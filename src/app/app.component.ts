@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const backgroundStyle = localStorage.getItem('background-style');
 
-    if (backgroundStyle.match('white')) {
+    if ('white'.match(backgroundStyle)) {
       document.getElementById('gradient').style.background = 'white';
     } else {
       document.getElementById('gradient').style.background = '';
