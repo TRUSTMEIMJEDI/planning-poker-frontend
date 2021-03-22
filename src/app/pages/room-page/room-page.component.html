@@ -32,8 +32,8 @@
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
   </mat-grid-list>
 
-  <div *ngIf="!observer" class="picker-container">
-    <app-card-picker (wasCardClicked)="updateCard($event)" *ngIf="!isRevealed"
+  <div class="picker-container">
+    <app-card-picker (wasCardClicked)="updateCard($event)" *ngIf="!isRevealed && !observer"
                      [selectedSize]="selectedSize"></app-card-picker>
     <app-vote-shower *ngIf="isRevealed" [sizes]="answers"></app-vote-shower>
   </div>
