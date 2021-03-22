@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {PokerService} from '../../services/poker.service';
-import {Room} from '../../models/room';
+import { Component, OnInit } from '@angular/core';
+import { PokerService } from '../../services/poker.service';
+import { Room } from '../../models/room';
 
 @Component({
-  selector: 'app-admin-page',
-  templateUrl: './admin-page.component.html',
-  styleUrls: ['./admin-page.component.scss']
+  selector : 'app-admin-page',
+  templateUrl : './admin-page.component.html',
+  styleUrls : [ './admin-page.component.scss' ]
 })
 export class AdminPageComponent implements OnInit {
 

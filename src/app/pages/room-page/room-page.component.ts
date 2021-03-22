@@ -1,16 +1,16 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PokerService} from '../../services/poker.service';
-import {User} from '../../models/user';
-import {Size} from '../../models/size';
-import {RxStompService} from '@stomp/ng2-stompjs';
-import {Message} from '@stomp/stompjs';
-import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PokerService } from '../../services/poker.service';
+import { User } from '../../models/user';
+import { Size } from '../../models/size';
+import { RxStompService } from '@stomp/ng2-stompjs';
+import { Message } from '@stomp/stompjs';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-room-page',
-  templateUrl: './room-page.component.html',
-  styleUrls: ['./room-page.component.scss']
+  selector : 'app-room-page',
+  templateUrl : './room-page.component.html',
+  styleUrls : [ './room-page.component.scss' ]
 })
 export class RoomPageComponent implements OnInit, OnDestroy {
 
@@ -134,7 +134,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   }
 
   private routeToHomeAndLogout(): void {
-    this.router.navigate(['/home']).then(() => {
+    this.router.navigate([ '/home' ]).then(() => {
       this.pokerService.logout();
     });
   }

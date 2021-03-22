@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Size} from '../../models/size';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Size } from '../../models/size';
 
 @Component({
-  selector: 'app-card-picker',
-  templateUrl: './card-picker.component.html',
-  styleUrls: ['./card-picker.component.scss']
+  selector : 'app-card-picker',
+  templateUrl : './card-picker.component.html',
+  styleUrls : [ './card-picker.component.scss' ]
 })
 export class CardPickerComponent {
 
@@ -19,7 +19,7 @@ export class CardPickerComponent {
     Size.L,
     Size.XL,
     Size.XXL,
-    Size.XXXL,
+    Size.XXXL
   ];
 
   constructor() {

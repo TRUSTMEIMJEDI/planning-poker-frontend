@@ -1,11 +1,11 @@
-import {InjectableRxStompConfig} from '@stomp/ng2-stompjs';
-import {PokerUtils} from '../../utils/poker-utils';
+import { InjectableRxStompConfig } from '@stomp/ng2-stompjs';
+import { PokerUtils } from '../../utils/poker-utils';
 
 export const myRxStompConfig: InjectableRxStompConfig = {
   // Which server?
   // brokerURL: 'ws://192.168.0.30:8080/socket',
   // brokerURL: 'ws://localhost:8080/socket',
-  brokerURL: PokerUtils.getBrokerUrl(),
+  brokerURL : PokerUtils.getBrokerUrl(),
 
   // Headers
   // Typical keys: login, passcode, host
@@ -16,13 +16,13 @@ export const myRxStompConfig: InjectableRxStompConfig = {
 
   // How often to heartbeat?
   // Interval in milliseconds, set to 0 to disable
-  heartbeatIncoming: 0, // Typical value 0 - disabled
-  heartbeatOutgoing: 0, // Typical value 20000 - every 20 seconds
+  heartbeatIncoming : 0, // Typical value 0 - disabled
+  heartbeatOutgoing : 0, // Typical value 20000 - every 20 seconds
 
   // Wait in milliseconds before attempting auto reconnect
   // Set to 0 to disable
   // Typical value 5000 (5 seconds)
-  reconnectDelay: 200,
+  reconnectDelay : 200
 
   // Will log diagnostics on console
   // It can be quite verbose, not recommended in production
