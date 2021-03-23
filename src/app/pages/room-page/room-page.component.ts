@@ -6,6 +6,7 @@ import { RxStompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector : 'app-room-page',
@@ -28,7 +29,10 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   private roomSub$: Subscription;
   private revealSub$: Subscription;
 
-  constructor(private pokerService: PokerService, private rxStompService: RxStompService, private router: Router) {
+  constructor(private pokerService: PokerService,
+              private rxStompService: RxStompService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -51,6 +55,12 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   getShareLink(): string {
     return `${ window.location.origin }/#/join-room?u=${ btoa(this.roomKey) }`;
+  }
+
+  snackBarOpen(): void {
+    this.snackBar.open('Link z zaproszeniem skopiowany do schowka!', 'OK', {
+      duration : 2000
+    });
   }
 
   cleanAnswers(): void {

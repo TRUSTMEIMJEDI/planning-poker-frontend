@@ -1,9 +1,15 @@
 <div class="center">
-  <h1 align="center" class="mat-title">Planning Poker</h1>
-  <button mat-raised-button
-          routerLink="/join-room" style="border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: dodgerblue">DOŁĄCZ DO POKOJU
-  </button>
-  <button mat-raised-button routerLink="/create-room" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-    UTWÓRZ POKÓJ
-  </button>
+  <p class="title no-select">Planning Poker</p>
+  <div class="btn-container">
+    <button mat-raised-button
+            class="join-room-btn"
+            routerLink="/join-room">
+      <span>DOŁĄCZ DO POKOJU</span>
+    </button>
+    <button mat-raised-button
+            class="create-room-btn"
+            routerLink="/create-room">
+      <span>UTWÓRZ POKÓJ</span>
+    </button>
+  </div>
 </div>
