@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PokerService } from '../../services/poker.service';
 import { Router } from '@angular/router';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector : 'app-create-room',
   templateUrl : './create-room.component.html',
   styleUrls : [ './create-room.component.scss' ]
 })
-export class CreateRoomComponent {
+export class CreateRoomComponent implements OnInit {
 
   roomName: string;
   userName: string;
 
   constructor(private pokerService: PokerService,
-              private router: Router) {
+              private router: Router,
+              private userDataService: UserDataService) {
+  }
+
+  ngOnInit(): void {
+    this.userName = this.userDataService.currentUserValue?.userName;
   }
 
   createRoom(): void {

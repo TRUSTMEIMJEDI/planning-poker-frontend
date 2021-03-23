@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokerService } from '../../services/poker.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector : 'app-join-room',
@@ -17,13 +18,21 @@ export class JoinRoomComponent implements OnInit {
   constructor(private pokerService: PokerService,
               private router: Router,
               private snackBar: MatSnackBar,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private userDataService: UserDataService) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.roomKey = atob(params.u);
+      if (params.u) {
+        this.roomKey = atob(params.u);
+      }
     });
+
+    this.userName = this.userDataService.currentUserValue?.userName;
+    if (this.userName && this.roomKey) {
+      this.joinRoom();
+    }
   }
 
   joinRoom(): void {

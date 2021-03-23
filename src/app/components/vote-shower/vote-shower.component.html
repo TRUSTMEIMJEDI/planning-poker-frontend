@@ -1,4 +1,4 @@
-<div *ngFor="let size of uniqueSizes" class="container no-select">
+<div *ngFor="let size of uniqueSizes" class="main-container no-select">
   <div *ngIf="size != null">
     <app-card [text]="getSizeText(size)"></app-card>
     <p>{{ countSize(size) }}</p>

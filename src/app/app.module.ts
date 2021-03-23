@@ -28,6 +28,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations : [
@@ -41,7 +43,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     CardPickerComponent,
     CardShowerComponent,
     VoteShowerComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    UserSettingsComponent
   ],
   imports : [
     BrowserModule,
@@ -58,7 +61,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatInputModule,
     HttpClientModule,
     MatGridListModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule
   ],
   providers : [
     {

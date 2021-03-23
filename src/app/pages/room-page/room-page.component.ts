@@ -7,6 +7,7 @@ import { Message } from '@stomp/stompjs';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector : 'app-room-page',
@@ -28,8 +29,10 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   answers: Size[];
   private roomSub$: Subscription;
   private revealSub$: Subscription;
+  private authSub$: Subscription;
 
   constructor(private pokerService: PokerService,
+              private userDataService: UserDataService,
               private rxStompService: RxStompService,
               private router: Router,
               private snackBar: MatSnackBar) {
@@ -37,7 +40,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initVariables();
-    if (!this.pokerService.currentUserValue) {
+    if (!this.pokerService.currentUserValue?.userKey) {
       return;
     }
     this.loadUsers();
@@ -50,6 +53,9 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     }
     if (this.revealSub$) {
       this.revealSub$.unsubscribe();
+    }
+    if (this.authSub$) {
+      this.authSub$.unsubscribe();
     }
   }
 
@@ -94,7 +100,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   private initVariables(): void {
     const auth = this.pokerService.currentUserValue;
-    if (!auth) {
+    if (!auth?.userKey) {
       this.routeToHomeAndLogout();
       return;
     }
@@ -103,6 +109,12 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.userName = auth.userName;
     this.roomKey = auth.roomKey;
     this.observer = auth.observer;
+
+    this.authSub$ = this.userDataService.currentUser.subscribe(authData => {
+      if (authData.observer !== this.observer) {
+        this.observer = authData.observer;
+      }
+    });
   }
 
   private loadUsers(): void {
@@ -122,15 +134,23 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   }
 
   private initializeWebSocketConnection(): void {
+    this.subscribeRoom();
+    this.subscribeRoomReveal();
+  }
+
+  private subscribeRoom(): void {
     this.roomSub$ = this.rxStompService.watch('/room/' + this.roomKey).subscribe((message: Message) => {
       const users = JSON.parse(message.body);
       if (users.length > 0) {
-        this.users = users;
+        this.mergeUsers(users);
         this.prepareUsersList();
       } else {
         this.routeToHomeAndLogout();
       }
     });
+  }
+
+  private subscribeRoomReveal(): void {
     this.revealSub$ = this.rxStompService.watch('/room/' + this.roomKey + '/reveal').subscribe((message: Message) => {
       if (message.body) {
         this.users = JSON.parse(message.body);
@@ -154,8 +174,15 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   private routeToHomeAndLogout(): void {
     this.router.navigate([ '/home' ]).then(() => {
-      this.pokerService.logout();
+      this.userDataService.leaveRoom();
     });
+  }
+
+  private mergeUsers(users: User[]): void {
+    this.users = users.map(itm => ({
+      ...this.users.find((item) => (item.name === itm.name) && item),
+      ...itm
+    }));
   }
 
 }

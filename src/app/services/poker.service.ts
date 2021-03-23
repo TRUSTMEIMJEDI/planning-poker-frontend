@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { Size } from '../models/size';
 import { Room } from '../models/room';
 import { PokerUtils } from '../utils/poker-utils';
-import { UserService } from './user.service';
+import { UserDataService } from './user-data.service';
 
 const httpOptions = {
   headers : new HttpHeaders({ 'Content-Type' : 'application/json' })
@@ -20,10 +20,10 @@ const BASE_URL = PokerUtils.getUrl();
 })
 export class PokerService {
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient, private userDataService: UserDataService) {}
 
   public get currentUserValue(): Auth {
-    return this.userService.currentUserValue;
+    return this.userDataService.currentUserValue;
   }
 
   createRoomWithOwner(roomName: string, userName: string): Observable<Auth> {
@@ -42,7 +42,7 @@ export class PokerService {
           observer : false
         };
         localStorage.setItem('currentUser', JSON.stringify(userData));
-        this.userService.setCurrentUserSubject(userData);
+        this.userDataService.setCurrentUserSubject(userData);
         return userData;
       }));
   }
@@ -63,7 +63,7 @@ export class PokerService {
             observer : responseData.observer
           };
           localStorage.setItem('currentUser', JSON.stringify(userData));
-          this.userService.setCurrentUserSubject(userData);
+          this.userDataService.setCurrentUserSubject(userData);
           return userData;
         }));
   }
@@ -104,11 +104,6 @@ export class PokerService {
 
   deleteRoom(password: string, roomKey: string): Observable<Room[]> {
     return this.http.post<Room[]>(`${ BASE_URL }deleteRoom`, { password, roomKey }, httpOptions);
-  }
-
-  logout(): void {
-    localStorage.removeItem('currentUser');
-    this.userService.setCurrentUserSubject(null);
   }
 
 }
