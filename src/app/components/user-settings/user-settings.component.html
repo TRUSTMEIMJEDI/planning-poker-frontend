@@ -1,0 +1,38 @@
+<div *ngIf="userName != null">
+  <button mat-button
+          #menuTrigger="matMenuTrigger"
+          [matMenuTriggerFor]="menu">
+    {{ userName }}
+    <mat-icon>
+      {{ menuTrigger["menuOpen"] ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+    </mat-icon>
+  </button>
+
+  <mat-menu #menu class="customize">
+    <div class="user-data h-100 w-100 no-select">
+      <mat-icon class="avatar h-100 w-auto">
+        perm_identity
+      </mat-icon>
+      <span class="h-100 h-100 w-100">{{ userName }}</span>
+      <button mat-button class="h-100 w-auto" (click)="$event.stopPropagation();">
+        <mat-icon>
+          create
+        </mat-icon>
+      </button>
+    </div>
+
+    <button mat-menu-item *ngIf="isInRoom">
+      <mat-slide-toggle [(ngModel)]="observer" (toggleChange)="changeUserType()" style="color: black">Obserwator</mat-slide-toggle>
+    </button>
+
+    <button mat-menu-item class="h-100 w-100" (click)="logout()">
+      <mat-icon>
+        logout
+      </mat-icon>
+      <span>
+      Wyloguj się
+    </span>
+    </button>
+
+  </mat-menu>
+</div>

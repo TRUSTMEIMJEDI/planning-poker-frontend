@@ -14,7 +14,7 @@
   </div>
   <div *ngIf="allowed" class="main-container">
     <button (click)="getRooms()" color="primary" mat-raised-button style="margin-bottom: .5rem">Odśwież</button>
-    <div *ngFor="let room of rooms; let i = index" class="row">
+    <div *ngFor="let room of rooms; let i = index" class="room-row">
       <li>Nazwa pokoju: {{ room.name }}, Kod pokoju: {{ room.key }}</li>
       <button (click)="deleteRoom(rooms[i].key)" color="secondary" mat-raised-button>Usuń pokój</button>
     </div>
