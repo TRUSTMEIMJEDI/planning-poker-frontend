@@ -22,7 +22,9 @@ export class JoinRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.roomKey = atob(params.u);
+      if (params.u) {
+        this.roomKey = atob(params.u);
+      }
     });
   }
 

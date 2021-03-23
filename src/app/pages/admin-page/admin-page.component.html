@@ -1,5 +1,5 @@
 <div class="center">
-  <div *ngIf="!allowed" class="container">
+  <div *ngIf="!allowed" class="main-container">
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Podaj hasło</mat-label>
@@ -12,7 +12,7 @@
       Wejdź
     </button>
   </div>
-  <div *ngIf="allowed" class="container">
+  <div *ngIf="allowed" class="main-container">
     <button (click)="getRooms()" color="primary" mat-raised-button style="margin-bottom: .5rem">Odśwież</button>
     <div *ngFor="let room of rooms; let i = index" class="row">
       <li>Nazwa pokoju: {{ room.name }}, Kod pokoju: {{ room.key }}</li>

@@ -1,4 +1,4 @@
-<div *ngFor="let card of cards; let i = index" class="container">
+<div *ngFor="let card of cards; let i = index" class="main-container">
   <app-card (wasCardClicked)="pickCardSize($event)"
             [size]="selectedSize"
             [text]="card">
