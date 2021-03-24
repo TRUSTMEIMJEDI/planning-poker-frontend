@@ -47,4 +47,34 @@ export class UserService {
       }));
   }
 
+  changeUsernameInRoom(newUsername: string): Observable<Auth> {
+    const body = {
+      roomKey : this.userDataService.currentUserValue.roomKey,
+      userKey : this.userDataService.currentUserValue.userKey,
+      newUsername
+    };
+
+    return this.http.post<any>(`${ BASE_URL }change-username`, body, httpOptions).pipe(
+      map(responseData => {
+        const authData = {
+          roomKey : responseData.roomKey,
+          roomName : responseData.roomName,
+          userKey : responseData.userKey,
+          userName : responseData.userName,
+          observer : responseData.observer
+        };
+        localStorage.setItem('currentUser', JSON.stringify(authData));
+        this.userDataService.setCurrentUserSubject(authData);
+
+        return authData;
+      }));
+  }
+
+  changeUsername(newUsername: string): void {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    currentUser.userName = newUsername;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    this.userDataService.setCurrentUserSubject(currentUser);
+  }
+
 }

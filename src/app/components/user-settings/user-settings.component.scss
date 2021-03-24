@@ -1,6 +1,16 @@
 ::ng-deep .customize {
   background: white;
-  min-width: 15rem !important;
+  min-width: 20.5rem !important;
+
+  input {
+    font-size: 1.1rem;
+    border: none;
+  }
+
+  input:disabled {
+    background: white;
+  }
+
 }
 
 button {
@@ -9,6 +19,7 @@ button {
   mat-icon {
     color: black;
   }
+
 }
 
 .user-data {

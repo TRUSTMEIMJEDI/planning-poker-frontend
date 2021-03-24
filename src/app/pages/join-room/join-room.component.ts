@@ -23,6 +23,10 @@ export class JoinRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!!this.userDataService.currentUserValue?.roomKey) {
+      this.router.navigate([ '/room' ]);
+    }
+
     this.activatedRoute.queryParams.subscribe(params => {
       if (params.u) {
         this.roomKey = atob(params.u);
@@ -30,6 +34,7 @@ export class JoinRoomComponent implements OnInit {
     });
 
     this.userName = this.userDataService.currentUserValue?.userName;
+
     if (this.userName && this.roomKey) {
       this.joinRoom();
     }

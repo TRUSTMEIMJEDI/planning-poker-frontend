@@ -19,6 +19,10 @@ export class CreateRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!!this.userDataService.currentUserValue?.roomKey) {
+      this.router.navigate([ '/room' ]);
+    }
+
     this.userName = this.userDataService.currentUserValue?.userName;
   }
 
