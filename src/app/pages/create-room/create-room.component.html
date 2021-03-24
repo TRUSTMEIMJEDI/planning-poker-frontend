@@ -3,14 +3,14 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Podaj nazwę pokoju</mat-label>
-      <input [(ngModel)]="roomName" matInput placeholder="Nazwa" type="text">
+      <input [(ngModel)]="roomName" matInput placeholder="Nazwa" type="text" maxlength="40">
       <mat-icon matSuffix>meeting_room</mat-icon>
     </mat-form-field>
   </p>
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Podaj pseudonim</mat-label>
-      <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text">
+      <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text" maxlength="20">
       <mat-icon matSuffix>attribution</mat-icon>
     </mat-form-field>
   </p>
