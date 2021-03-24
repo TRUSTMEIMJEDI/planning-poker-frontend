@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Size } from '../../models/size';
+import { EnumUtils } from '../../utils/enum-utils';
 
 @Component({
   selector : 'app-vote-shower',
@@ -16,7 +17,7 @@ export class VoteShowerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.uniqueSizes = [ ...new Set(this.sizes) ];
+    this.uniqueSizes = [ ...new Set(this.sizes) ].sort(EnumUtils.getSizeCompareFn());
   }
 
   getSizeText(size: Size): string {

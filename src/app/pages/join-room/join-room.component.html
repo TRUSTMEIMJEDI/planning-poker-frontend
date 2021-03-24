@@ -3,14 +3,14 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Podaj kod do pokoju</mat-label>
-      <input [(ngModel)]="roomKey" matInput placeholder="Kod" type="text">
+      <input [(ngModel)]="roomKey" matInput placeholder="Kod" type="text" maxlength="5">
       <mat-icon matSuffix>vpn_key</mat-icon>
     </mat-form-field>
   </p>
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Podaj pseudonim</mat-label>
-      <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text">
+      <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text" maxlength="20">
       <mat-icon matSuffix>attribution</mat-icon>
     </mat-form-field>
   </p>
