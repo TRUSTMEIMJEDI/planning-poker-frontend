@@ -20,7 +20,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   users2: User[];
   roomName: string;
   roomKey: string;
-  userName: string;
   isRevealed = false;
   observer = false;
   selectedSize: Size;
@@ -31,7 +30,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   private revealSub$: Subscription;
   private authSub$: Subscription;
 
-  constructor(private pokerService: PokerService,
+  constructor(public pokerService: PokerService,
               private userDataService: UserDataService,
               private rxStompService: RxStompService,
               private router: Router,
@@ -82,14 +81,14 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   }
 
   updateCard(size: Size): void {
-    const user = this.users.find(u => u.name === this.userName);
+    const user = this.users.find(u => u.name === this.pokerService.currentUserValue.userName);
     this.selectedSize = this.selectedSize === size ? null : size;
     user.answer = this.selectedSize != null;
     this.pokerService.sendAnswer(this.selectedSize);
   }
 
   leaveRoom(): void {
-    this.pokerService.leaveRoom().subscribe((data) => {
+    this.pokerService.leaveRoom().subscribe(() => {
         this.routeToHomeAndLogout();
       },
       () => {
@@ -106,7 +105,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     }
 
     this.roomName = auth.roomName;
-    this.userName = auth.userName;
     this.roomKey = auth.roomKey;
     this.observer = auth.observer;
 

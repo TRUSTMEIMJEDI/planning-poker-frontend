@@ -1,8 +1,10 @@
-<div *ngIf="userName != null">
+<div *ngIf="currentUsername != null">
   <button mat-button
           #menuTrigger="matMenuTrigger"
+          (menuClosed)="menuClosed()"
+          (menuOpened)="menuOpened()"
           [matMenuTriggerFor]="menu">
-    {{ userName }}
+    {{ currentUsername }}
     <mat-icon>
       {{ menuTrigger["menuOpen"] ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
     </mat-icon>
@@ -13,8 +15,16 @@
       <mat-icon class="avatar h-100 w-auto">
         perm_identity
       </mat-icon>
-      <span class="h-100 h-100 w-100">{{ userName }}</span>
-      <button mat-button class="h-100 w-auto" (click)="$event.stopPropagation();">
+      <input #input
+             class="h-100 h-100 w-100"
+             [(ngModel)]="newUsername"
+             (click)="$event.stopPropagation()"
+             (keydown.enter)="changeName()"
+             [disabled]="!isChangeNameMode"
+             maxlength="15">
+      <button mat-button
+              class="h-100 w-auto"
+              (click)="onChangeNameClick($event);">
         <mat-icon>
           create
         </mat-icon>
@@ -22,7 +32,11 @@
     </div>
 
     <button mat-menu-item *ngIf="isInRoom">
-      <mat-slide-toggle [(ngModel)]="observer" (toggleChange)="changeUserType()" style="color: black">Obserwator</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="observer"
+                        (toggleChange)="changeUserType()"
+                        style="color: black">
+        Obserwator
+      </mat-slide-toggle>
     </button>
 
     <button mat-menu-item class="h-100 w-100" (click)="logout()">
