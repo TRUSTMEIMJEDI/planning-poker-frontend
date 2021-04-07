@@ -69,7 +69,11 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   deleteUser(user: User): void {
     this.pokerService.deleteUserFromRoom(user).subscribe(
-      () => {},
+      () => {
+        // if (this.validateIfCurrentUserExists()) {
+        //   this.routeToHomeAndLogout();
+        // }
+      },
       error => {
         this.snackBar.open(error.error.message, 'OK', {
           duration : 2000
@@ -156,9 +160,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       const users = JSON.parse(message.body);
       if (users.length > 0) {
         this.mergeUsers(users);
-        if (this.validateIfCurrentUserExists()) {
-          this.routeToHomeAndLogout();
-        }
         this.prepareUsersList();
       } else {
         this.routeToHomeAndLogout();
@@ -201,9 +202,9 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private validateIfCurrentUserExists(): boolean {
-    const currentUser = this.pokerService.currentUserValue.userName;
-    return this.users.find(u => u.name === currentUser) === undefined;
-  }
+  // private validateIfCurrentUserExists(): boolean {
+  //   const currentUser = this.pokerService.currentUserValue.userName;
+  //   return this.users.find(u => u.name === currentUser) === undefined;
+  // }
 
 }
