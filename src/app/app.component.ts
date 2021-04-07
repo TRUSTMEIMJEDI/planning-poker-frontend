@@ -12,20 +12,20 @@ export class AppComponent implements OnInit {
     const backgroundStyle = localStorage.getItem('background-style');
 
     if ('white'.match(backgroundStyle)) {
-      document.getElementById('gradient').style.background = 'white';
+      document.getElementById('background-poker').style.background = 'white';
     } else {
-      document.getElementById('gradient').style.background = '';
+      document.getElementById('background-poker').style.background = '';
     }
   }
 
   changeBackground(): void {
-    const style = document.getElementById('gradient').style.background;
+    const style = document.getElementById('background-poker').style.background;
     if (style.match('white')) {
       localStorage.setItem('background-style', 'gradient');
-      document.getElementById('gradient').style.background = '';
+      document.getElementById('background-poker').style.background = '';
     } else {
       localStorage.setItem('background-style', 'white');
-      document.getElementById('gradient').style.background = 'white';
+      document.getElementById('background-poker').style.background = 'white';
     }
   }
 
