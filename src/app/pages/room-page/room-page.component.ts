@@ -21,6 +21,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   roomName: string;
   roomKey: string;
   isRevealed = false;
+  allowDeleteUsers = false;
   observer = false;
   selectedSize: Size;
 
@@ -60,6 +61,20 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   getShareLink(): string {
     return `${ window.location.origin }/#/join-room?u=${ btoa(this.roomKey) }`;
+  }
+
+  setAllowDeleteUsers(allowDeleteUsers: boolean): void {
+    this.allowDeleteUsers = allowDeleteUsers;
+  }
+
+  deleteUser(user: User): void {
+    this.pokerService.deleteUserFromRoom(user).subscribe(
+      () => {},
+      error => {
+        this.snackBar.open(error.error.message, 'OK', {
+          duration : 2000
+        });
+      });
   }
 
   snackBarOpen(): void {
@@ -141,6 +156,9 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       const users = JSON.parse(message.body);
       if (users.length > 0) {
         this.mergeUsers(users);
+        if (this.validateIfCurrentUserExists()) {
+          this.routeToHomeAndLogout();
+        }
         this.prepareUsersList();
       } else {
         this.routeToHomeAndLogout();
@@ -181,6 +199,11 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       ...this.users.find((item) => (item.name === itm.name) && item),
       ...itm
     }));
+  }
+
+  private validateIfCurrentUserExists(): boolean {
+    const currentUser = this.pokerService.currentUserValue.userName;
+    return this.users.find(u => u.name === currentUser) === undefined;
   }
 
 }

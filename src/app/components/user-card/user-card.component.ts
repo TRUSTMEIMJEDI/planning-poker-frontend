@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Size } from '../../models/size';
 
 @Component({
@@ -12,6 +12,9 @@ export class UserCardComponent {
   @Input() size: Size;
   @Input() userName: string;
   @Input() observer: boolean;
+  @Input() allowDeleteUsers: boolean;
+
+  @Output() deleteUserEvent = new EventEmitter<string>();
 
   constructor() {}
 
@@ -20,6 +23,10 @@ export class UserCardComponent {
       return '';
     }
     return Size[ size ];
+  }
+
+  deleteUserByName(): void {
+    this.deleteUserEvent.emit(this.userName);
   }
 
 }

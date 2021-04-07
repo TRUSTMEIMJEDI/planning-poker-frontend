@@ -81,6 +81,16 @@ export class PokerService {
     return this.http.post<any>(`${ BASE_URL }leaveRoom`, body, httpOptions);
   }
 
+  deleteUserFromRoom(userToDelete: User): Observable<any> {
+    const body = {
+      roomKey : this.userDataService.currentUserValue.roomKey,
+      userKey : this.userDataService.currentUserValue.userKey,
+      userNameToDelete : userToDelete.name
+    };
+
+    return this.http.post<any>(`${ BASE_URL }deleteUserFromRoom`, body, httpOptions);
+  }
+
   sendAnswer(size: Size): void {
     const body = {
       roomKey : this.currentUserValue.roomKey,

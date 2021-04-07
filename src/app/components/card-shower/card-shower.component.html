@@ -3,7 +3,9 @@
     <app-user-card [cardStyle]="getCardStyle(user)"
                    [observer]="user.observer"
                    [size]="user.size"
-                   [userName]="user.name">
+                   [userName]="user.name"
+                   [allowDeleteUsers]="allowDeleteUsers && !isActiveUser(user)"
+                   (deleteUserEvent)="findUserAndDispatchDelete($event)">
     </app-user-card>
   </div>
 </div>

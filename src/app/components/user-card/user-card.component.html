@@ -1,4 +1,5 @@
 <div class="main-container no-select">
+  <button *ngIf="allowDeleteUsers" class="delete-user" (click)="deleteUserByName()">X</button>
   <div *ngIf="!observer">
     <div class="card-{{ cardStyle }}">
       <div *ngIf="cardStyle.match('showed')">

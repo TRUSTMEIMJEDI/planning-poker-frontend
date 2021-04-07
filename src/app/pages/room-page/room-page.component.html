@@ -11,14 +11,18 @@
       </button>
     </div>
     <div class="d-flex">
-      <app-user-settings></app-user-settings>
+      <app-user-settings [allowDeleteUsers]="allowDeleteUsers"
+                         (allowDeleteUsersEvent)="setAllowDeleteUsers($event)"></app-user-settings>
       <button (click)="leaveRoom()" mat-raised-button>Wyjdź z pokoju</button>
     </div>
   </div>
   <mat-grid-list cols="8" rowHeight="10rem">
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="4">
-      <app-card-shower [activeUser]="pokerService.currentUserValue.userName" [users]="users1"></app-card-shower>
+      <app-card-shower [activeUser]="pokerService.currentUserValue.userName"
+                       [users]="users1"
+                       [allowDeleteUsers]="allowDeleteUsers"
+                       (deleteUserEvent)="deleteUser($event)"></app-card-shower>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="2"></mat-grid-tile>
@@ -41,7 +45,10 @@
     <mat-grid-tile [colspan]="2" [rowspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
     <mat-grid-tile [colspan]="4">
-      <app-card-shower [activeUser]="pokerService.currentUserValue.userName" [users]="users2"></app-card-shower>
+      <app-card-shower [activeUser]="pokerService.currentUserValue.userName"
+                       [users]="users2"
+                       [allowDeleteUsers]="allowDeleteUsers"
+                       (deleteUserEvent)="deleteUser($event)"></app-card-shower>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
   </mat-grid-list>
