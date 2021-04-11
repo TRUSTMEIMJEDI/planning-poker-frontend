@@ -29,6 +29,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   answers: Size[];
   private roomSub$: Subscription;
   private revealSub$: Subscription;
+  private roomKickSub$: Subscription;
   private authSub$: Subscription;
 
   constructor(public pokerService: PokerService,
@@ -57,6 +58,9 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     if (this.authSub$) {
       this.authSub$.unsubscribe();
     }
+    if (this.roomKickSub$) {
+      this.roomKickSub$.unsubscribe();
+    }
   }
 
   getShareLink(): string {
@@ -70,9 +74,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   deleteUser(user: User): void {
     this.pokerService.deleteUserFromRoom(user).subscribe(
       () => {
-        // if (this.validateIfCurrentUserExists()) {
-        //   this.routeToHomeAndLogout();
-        // }
       },
       error => {
         this.snackBar.open(error.error.message, 'OK', {
@@ -153,6 +154,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(): void {
     this.subscribeRoom();
     this.subscribeRoomReveal();
+    this.subscribeRoomKick();
   }
 
   private subscribeRoom(): void {
@@ -181,6 +183,17 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     });
   }
 
+  private subscribeRoomKick(): void {
+    const userName = this.userDataService.currentUserValue.userName;
+    this.roomKickSub$ = this.rxStompService.watch('/room/' + this.roomKey + '/' + userName).subscribe((message: Message) => {
+      if (message.body) {
+        if (message.body === userName) {
+          this.routeToHomeAndLogout();
+        }
+      }
+    });
+  }
+
   private validateShowCards(): boolean {
     return this.users.every(u => u.answer === false);
   }
@@ -201,10 +214,5 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       ...itm
     }));
   }
-
-  // private validateIfCurrentUserExists(): boolean {
-  //   const currentUser = this.pokerService.currentUserValue.userName;
-  //   return this.users.find(u => u.name === currentUser) === undefined;
-  // }
 
 }
