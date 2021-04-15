@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { UserDataService } from '../../services/user-data.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls : [ './user-settings.component.scss' ]
 })
 export class UserSettingsComponent implements OnInit {
+
+  @Input() allowDeleteUsers: boolean;
+  @Output() allowDeleteUsersEvent = new EventEmitter<boolean>();
 
   @ViewChild('input') input: ElementRef;
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
@@ -39,6 +42,11 @@ export class UserSettingsComponent implements OnInit {
     this.userService.changeUserType(!this.observer).subscribe(() => {
       this.observer = this.userDataService.currentUserValue.observer;
     });
+  }
+
+  changeAllowDeleteUsers(): void {
+    this.allowDeleteUsers = !this.allowDeleteUsers;
+    this.allowDeleteUsersEvent.emit(this.allowDeleteUsers);
   }
 
   logout(): void {

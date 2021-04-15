@@ -39,6 +39,14 @@
       </mat-slide-toggle>
     </button>
 
+    <button mat-menu-item>
+      <mat-slide-toggle [checked]="allowDeleteUsers"
+                        (toggleChange)="changeAllowDeleteUsers()"
+                        style="color: black">
+        Usuwanie użytkowników
+      </mat-slide-toggle>
+    </button>
+
     <button mat-menu-item class="h-100 w-100" (click)="logout()">
       <mat-icon>
         logout

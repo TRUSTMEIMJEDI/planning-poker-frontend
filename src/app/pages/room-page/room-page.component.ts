@@ -21,6 +21,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   roomName: string;
   roomKey: string;
   isRevealed = false;
+  allowDeleteUsers = false;
   observer = false;
   selectedSize: Size;
 
@@ -28,6 +29,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   answers: Size[];
   private roomSub$: Subscription;
   private revealSub$: Subscription;
+  private roomKickSub$: Subscription;
   private authSub$: Subscription;
 
   constructor(public pokerService: PokerService,
@@ -56,10 +58,28 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     if (this.authSub$) {
       this.authSub$.unsubscribe();
     }
+    if (this.roomKickSub$) {
+      this.roomKickSub$.unsubscribe();
+    }
   }
 
   getShareLink(): string {
     return `${ window.location.origin }/#/join-room?u=${ btoa(this.roomKey) }`;
+  }
+
+  setAllowDeleteUsers(allowDeleteUsers: boolean): void {
+    this.allowDeleteUsers = allowDeleteUsers;
+  }
+
+  deleteUser(user: User): void {
+    this.pokerService.deleteUserFromRoom(user).subscribe(
+      () => {
+      },
+      error => {
+        this.snackBar.open(error.error.message, 'OK', {
+          duration : 2000
+        });
+      });
   }
 
   snackBarOpen(): void {
@@ -134,6 +154,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(): void {
     this.subscribeRoom();
     this.subscribeRoomReveal();
+    this.subscribeRoomKick();
   }
 
   private subscribeRoom(): void {
@@ -157,6 +178,17 @@ export class RoomPageComponent implements OnInit, OnDestroy {
         this.isRevealed = !this.isAnswered();
         if (!this.isRevealed) {
           this.selectedSize = null;
+        }
+      }
+    });
+  }
+
+  private subscribeRoomKick(): void {
+    const userName = this.userDataService.currentUserValue.userName;
+    this.roomKickSub$ = this.rxStompService.watch('/room/' + this.roomKey + '/' + userName).subscribe((message: Message) => {
+      if (message.body) {
+        if (message.body === userName) {
+          this.routeToHomeAndLogout();
         }
       }
     });

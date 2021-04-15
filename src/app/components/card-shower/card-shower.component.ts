@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../models/user';
 
 @Component({
@@ -10,6 +10,9 @@ export class CardShowerComponent {
 
   @Input() users: User[];
   @Input() activeUser: string;
+  @Input() allowDeleteUsers: boolean;
+
+  @Output() deleteUserEvent = new EventEmitter<User>();
 
   constructor() {
   }
@@ -34,6 +37,15 @@ export class CardShowerComponent {
         return 'empty';
       }
     }
+  }
+
+  isActiveUser(user: User): boolean {
+    return user.name === this.activeUser;
+  }
+
+  findUserAndDispatchDelete(userName: string): void {
+    const user = this.users.find(u => u.name === userName);
+    this.deleteUserEvent.emit(user);
   }
 
 }

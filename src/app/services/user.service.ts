@@ -5,6 +5,7 @@ import { UserDataService } from './user-data.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Auth } from '../models/auth';
+import { User } from '../models/user';
 
 const httpOptions = {
   headers : new HttpHeaders({ 'Content-Type' : 'application/json' })

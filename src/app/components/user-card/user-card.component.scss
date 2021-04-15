@@ -6,6 +6,22 @@
   font-size: 1rem;
   font-weight: bold;
 
+  .delete-user {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2575ff;
+    border: none;
+    color: white;
+    font-size: 12px;
+    margin-left: 55px;
+    top: 6px;
+    border-radius: 100%;
+  }
+
   mat-icon {
     font-size: 20px;
   }
