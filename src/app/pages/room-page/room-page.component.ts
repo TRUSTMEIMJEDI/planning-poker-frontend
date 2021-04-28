@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { PokerService } from '../../services/poker.service';
 import { User } from '../../models/user';
 import { Size } from '../../models/size';
@@ -113,6 +113,17 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       },
       () => {
         this.routeToHomeAndLogout();
+      }
+    );
+  }
+
+  @HostListener('window:beforeunload')
+  leaveRoomOnCloseTab(): void {
+    this.pokerService.leaveRoom().subscribe(() => {
+        this.userDataService.leaveRoom();
+      },
+      () => {
+        this.userDataService.leaveRoom();
       }
     );
   }

@@ -1,26 +1,28 @@
-<app-user-settings class="user-settings-btn"></app-user-settings>
-<div (keyup.enter)="createRoom()" class="center no-select">
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Podaj nazwę pokoju</mat-label>
-      <input [(ngModel)]="roomName" matInput placeholder="Nazwa" type="text" maxlength="40">
-      <mat-icon matSuffix>meeting_room</mat-icon>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Podaj pseudonim</mat-label>
-      <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text" maxlength="15">
-      <mat-icon matSuffix>attribution</mat-icon>
-    </mat-form-field>
-  </p>
-  <div style="display: flex; flex-direction: column">
-    <button (click)="createRoom()" color="primary" mat-raised-button>
-      Utwórz pokój
-    </button>
-    <br>
-    <button color="secondary" mat-raised-button routerLink="/home">
-      Wstecz
-    </button>
+<div id="background-poker">
+  <app-user-settings class="user-settings-btn"></app-user-settings>
+  <div (keyup.enter)="createRoom()" class="center no-select">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Podaj nazwę pokoju</mat-label>
+        <input [(ngModel)]="roomName" matInput placeholder="Nazwa" type="text" maxlength="40">
+        <mat-icon matSuffix>meeting_room</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Podaj pseudonim</mat-label>
+        <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text" maxlength="15">
+        <mat-icon matSuffix>attribution</mat-icon>
+      </mat-form-field>
+    </p>
+    <div style="display: flex; flex-direction: column">
+      <button (click)="createRoom()" color="primary" mat-raised-button>
+        Utwórz pokój
+      </button>
+      <br>
+      <button color="secondary" mat-raised-button routerLink="/home">
+        Wstecz
+      </button>
+    </div>
   </div>
 </div>
