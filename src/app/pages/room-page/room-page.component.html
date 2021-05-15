@@ -2,7 +2,7 @@
   <div class="top-container">
     <div class="room-info-container">
       <span>
-        {{ roomName }} | Kod: {{ roomKey }}
+        {{ 'main.page.room.code' | translate:{ name: roomName, key: roomKey } }}
       </span>
       <button [cdkCopyToClipboard]="getShareLink()"
               (click)="snackBarOpen()"
@@ -13,7 +13,7 @@
     <div class="d-flex">
       <app-user-settings [allowDeleteUsers]="allowDeleteUsers"
                          (allowDeleteUsersEvent)="setAllowDeleteUsers($event)"></app-user-settings>
-      <button (click)="leaveRoom()" mat-raised-button>Wyjdź z pokoju</button>
+      <button (click)="leaveRoom()" mat-raised-button>{{ 'main.page.room.leave-room' | translate }}</button>
     </div>
   </div>
   <mat-grid-list cols="8" rowHeight="10rem">
@@ -32,13 +32,13 @@
                 class="show-cards-btn"
                 (click)="showCards()"
                 mat-raised-button>
-          <span>Odkryj karty</span>
+          <span>{{ 'main.page.room.reveal-cards' | translate }}</span>
         </button>
         <app-vote-shower *ngIf="isRevealed" [sizes]="answers"></app-vote-shower>
         <div *ngIf="isRevealed"
              (click)="cleanAnswers()"
              class="next-voting-btn">
-          <span class="no-select">Następne głosowanie</span>
+          <span class="no-select">{{ 'main.page.room.next-voting' | translate }}</span>
         </div>
       </div>
     </mat-grid-tile>

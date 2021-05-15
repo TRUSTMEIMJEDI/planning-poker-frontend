@@ -35,7 +35,7 @@
       <mat-slide-toggle [(ngModel)]="observer"
                         (toggleChange)="changeUserType()"
                         style="color: black">
-        Obserwator
+        {{ 'main.component.settings.observer' | translate }}
       </mat-slide-toggle>
     </button>
 
@@ -43,7 +43,7 @@
       <mat-slide-toggle [checked]="allowDeleteUsers"
                         (toggleChange)="changeAllowDeleteUsers()"
                         style="color: black">
-        Usuwanie użytkowników
+        {{ 'main.component.settings.deleting-users' | translate }}
       </mat-slide-toggle>
     </button>
 
@@ -52,7 +52,7 @@
         logout
       </mat-icon>
       <span>
-      Wyloguj się
+      {{ 'main.component.settings.logout' | translate }}
     </span>
     </button>
 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -12,7 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RoomPageComponent } from './pages/room-page/room-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { CardComponent } from './components/card/card.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { CardPickerComponent } from './components/card-picker/card-picker.component';
@@ -32,6 +32,44 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 import { MatMenuModule } from '@angular/material/menu';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
+import {forkJoin, of} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+
+// tslint:disable-next-line:typedef
+export function initApp(http: HttpClient, translate: TranslateService) {
+  return () => new Promise<boolean>((resolve: (res: boolean) => void) => {
+
+    const defaultLocale = 'pl';
+    const translationsUrl = '/#/assets/i18n';
+    const suffix = '.json';
+    const storageLocale = localStorage.getItem('locale');
+    const locale = storageLocale || defaultLocale;
+
+    // forkJoin([
+    //   http.get(`/assets/i18n/dev.json`).pipe(
+    //     catchError(() => of(null))
+    //   ),
+    //   http.get(`${translationsUrl}/${locale}${suffix}`).pipe(
+    //     catchError(() => of(null))
+    //   )
+    // ])
+    http.get(`${translationsUrl}/${locale}${suffix}`).pipe(
+      catchError(() => of(null))
+    ).subscribe((response: any[]) => {
+      const devKeys = response[0];
+      const translatedKeys = response[1];
+
+      translate.setTranslation(defaultLocale, devKeys || {});
+      translate.setTranslation(locale, translatedKeys || {}, true);
+
+      translate.setDefaultLang(defaultLocale);
+      translate.use(locale);
+
+      resolve(true);
+    });
+  });
+}
 
 @NgModule({
   declarations : [
@@ -66,7 +104,8 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatMenuModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    TranslateModule.forRoot()
   ],
   providers : [
     {
@@ -81,6 +120,12 @@ import { MatSelectModule } from '@angular/material/select';
     {
       provide : LocationStrategy,
       useClass : HashLocationStrategy
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initApp,
+      deps: [HttpClient, TranslateService],
+      multi: true
     }
   ],
   bootstrap : [ AppComponent ]
