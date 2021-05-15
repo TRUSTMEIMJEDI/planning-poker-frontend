@@ -15,6 +15,16 @@
         <mat-icon matSuffix>attribution</mat-icon>
       </mat-form-field>
     </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>System głosowania</mat-label>
+        <mat-select [(value)]="roomType">
+          <mat-option *ngFor="let type of roomTypes; let i = index" value="{{ getRoomTypeString(type.roomType) }}">
+            {{ type.desc }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
     <div style="display: flex; flex-direction: column">
       <button (click)="createRoom()" color="primary" mat-raised-button>
         Utwórz pokój

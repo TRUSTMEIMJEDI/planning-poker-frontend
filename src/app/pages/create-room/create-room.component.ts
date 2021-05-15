@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokerService } from '../../services/poker.service';
 import { Router } from '@angular/router';
 import { UserDataService } from '../../services/user-data.service';
+import { RoomType } from '../../models/room-type';
 
 @Component({
   selector : 'app-create-room',
@@ -12,6 +13,11 @@ export class CreateRoomComponent implements OnInit {
 
   roomName: string;
   userName: string;
+  roomType: string;
+  roomTypes = [
+    { roomType : RoomType.T_SHIRTS, desc : 'T-shirts (XXS, XS, S, M, L, XL, 2XL, 3XL, ?)' },
+    { roomType : RoomType.FIBONACCI, desc : 'Fibonacci (0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?)' }
+  ];
 
   constructor(private pokerService: PokerService,
               private router: Router,
@@ -27,13 +33,17 @@ export class CreateRoomComponent implements OnInit {
   }
 
   createRoom(): void {
-    if (!this.roomName || !this.userName) {
+    if (!this.roomName || !this.userName || !this.roomType) {
       return;
     }
 
-    this.pokerService.createRoomWithOwner(this.roomName, this.userName).subscribe(() => {
+    this.pokerService.createRoomWithOwner(this.roomName, this.userName, this.roomType).subscribe(() => {
       this.router.navigate([ '/room' ]);
     });
+  }
+
+  getRoomTypeString(roomType: RoomType): string {
+    return RoomType[ roomType ];
   }
 
 }

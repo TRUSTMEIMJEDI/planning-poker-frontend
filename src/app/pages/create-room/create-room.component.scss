@@ -10,8 +10,16 @@
 
 }
 
+.mat-form-field {
+  width: 20rem;
+}
+
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   color: black;
+}
+
+::ng-deep .mat-active span {
+  color: white !important;
 }
 
 ::ng-deep .mat-form-field-label {
@@ -19,6 +27,14 @@
 }
 
 ::ng-deep .mat-hint {
+  color: black !important;
+}
+
+.not-empty-select.mat-selected {
+  color: black !important;
+}
+
+:host ::ng-deep .mat-select-value-text {
   color: black !important;
 }
 

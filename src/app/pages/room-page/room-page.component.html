@@ -55,7 +55,8 @@
 
   <div class="picker-container">
     <app-card-picker (wasCardClicked)="updateCard($event)" *ngIf="!isRevealed && !observer"
-                     [selectedSize]="selectedSize"></app-card-picker>
+                     [selectedSize]="selectedSize"
+                     [roomType]="roomType"></app-card-picker>
 
   </div>
 </div>

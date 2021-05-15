@@ -20,6 +20,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   users2: User[];
   roomName: string;
   roomKey: string;
+  roomType: string;
   isRevealed = false;
   allowDeleteUsers = false;
   observer = false;
@@ -138,6 +139,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.roomName = auth.roomName;
     this.roomKey = auth.roomKey;
     this.observer = auth.observer;
+    this.roomType = auth.roomType;
 
     this.authSub$ = this.userDataService.currentUser.subscribe(authData => {
       if (authData.observer !== this.observer) {

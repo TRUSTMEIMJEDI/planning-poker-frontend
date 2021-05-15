@@ -30,6 +30,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations : [
@@ -62,7 +64,9 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     MatGridListModule,
     FormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers : [
     {
