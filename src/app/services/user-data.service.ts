@@ -40,7 +40,8 @@ export class UserDataService {
       roomName : null,
       userKey : null,
       userName : this.currentUserValue.userName,
-      observer : null
+      observer : null,
+      roomType : null
     };
   }
 

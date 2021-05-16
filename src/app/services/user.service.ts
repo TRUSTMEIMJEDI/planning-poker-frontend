@@ -39,7 +39,8 @@ export class UserService {
           roomName : responseData.roomName,
           userKey : responseData.userKey,
           userName : responseData.userName,
-          observer : responseData.observer
+          observer : responseData.observer,
+          roomType : responseData.roomType
         };
         localStorage.setItem('currentUser', JSON.stringify(authData));
         this.userDataService.setCurrentUserSubject(authData);
@@ -62,7 +63,8 @@ export class UserService {
           roomName : responseData.roomName,
           userKey : responseData.userKey,
           userName : responseData.userName,
-          observer : responseData.observer
+          observer : responseData.observer,
+          roomType : responseData.roomType
         };
         localStorage.setItem('currentUser', JSON.stringify(authData));
         this.userDataService.setCurrentUserSubject(authData);

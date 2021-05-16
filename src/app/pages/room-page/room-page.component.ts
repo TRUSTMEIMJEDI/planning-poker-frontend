@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { PokerService } from '../../services/poker.service';
 import { User } from '../../models/user';
 import { Size } from '../../models/size';
@@ -20,6 +20,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   users2: User[];
   roomName: string;
   roomKey: string;
+  roomType: string;
   isRevealed = false;
   allowDeleteUsers = false;
   observer = false;
@@ -117,6 +118,17 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     );
   }
 
+  @HostListener('window:beforeunload')
+  leaveRoomOnCloseTab(): void {
+    this.pokerService.leaveRoom().subscribe(() => {
+        this.userDataService.leaveRoom();
+      },
+      () => {
+        this.userDataService.leaveRoom();
+      }
+    );
+  }
+
   private initVariables(): void {
     const auth = this.pokerService.currentUserValue;
     if (!auth?.userKey) {
@@ -127,6 +139,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.roomName = auth.roomName;
     this.roomKey = auth.roomKey;
     this.observer = auth.observer;
+    this.roomType = auth.roomType;
 
     this.authSub$ = this.userDataService.currentUser.subscribe(authData => {
       if (authData.observer !== this.observer) {

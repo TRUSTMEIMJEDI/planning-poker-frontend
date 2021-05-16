@@ -26,10 +26,11 @@ export class PokerService {
     return this.userDataService.currentUserValue;
   }
 
-  createRoomWithOwner(roomName: string, userName: string): Observable<Auth> {
+  createRoomWithOwner(roomName: string, userName: string, roomType: string): Observable<Auth> {
     const body = {
       roomName,
-      userName
+      userName,
+      roomType
     };
 
     return this.http.post<any>(BASE_URL + 'createRoomWithOwner', body, httpOptions)
@@ -39,6 +40,7 @@ export class PokerService {
           roomName : responseData.roomName,
           userKey : responseData.userKey,
           userName : responseData.userName,
+          roomType,
           observer : false
         };
         localStorage.setItem('currentUser', JSON.stringify(userData));
@@ -60,7 +62,8 @@ export class PokerService {
             roomName : responseData.roomName,
             userKey : responseData.userKey,
             userName : responseData.userName,
-            observer : responseData.observer
+            observer : responseData.observer,
+            roomType : responseData.roomType
           };
           localStorage.setItem('currentUser', JSON.stringify(userData));
           this.userDataService.setCurrentUserSubject(userData);

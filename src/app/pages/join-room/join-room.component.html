@@ -1,29 +1,31 @@
-<app-user-settings class="user-settings-btn"></app-user-settings>
-<div (keyup.enter)="joinRoom()" class="center">
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Podaj kod do pokoju</mat-label>
-      <input [(ngModel)]="roomKey" matInput placeholder="Kod" type="text" maxlength="5">
-      <mat-icon matSuffix>vpn_key</mat-icon>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Podaj pseudonim</mat-label>
-      <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text" maxlength="15">
-      <mat-icon matSuffix>attribution</mat-icon>
-    </mat-form-field>
-  </p>
+<div id="background-poker">
+  <app-user-settings class="user-settings-btn"></app-user-settings>
+  <div (keyup.enter)="joinRoom()" class="center">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Podaj kod do pokoju</mat-label>
+        <input [(ngModel)]="roomKey" matInput placeholder="Kod" type="text" maxlength="5">
+        <mat-icon matSuffix>vpn_key</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Podaj pseudonim</mat-label>
+        <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text" maxlength="15">
+        <mat-icon matSuffix>attribution</mat-icon>
+      </mat-form-field>
+    </p>
 
-  <mat-slide-toggle [(ngModel)]="observer">Obserwator</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="observer">Obserwator</mat-slide-toggle>
 
-  <div style="display: flex; flex-direction: column">
-    <button (click)="joinRoom()" color="primary" mat-raised-button>
-      Wejdź do pokoju
-    </button>
-    <br>
-    <button color="secondary" mat-raised-button routerLink="/home">
-      Wstecz
-    </button>
+    <div style="display: flex; flex-direction: column">
+      <button (click)="joinRoom()" color="primary" mat-raised-button>
+        Wejdź do pokoju
+      </button>
+      <br>
+      <button color="secondary" mat-raised-button routerLink="/home">
+        Wstecz
+      </button>
+    </div>
   </div>
 </div>
