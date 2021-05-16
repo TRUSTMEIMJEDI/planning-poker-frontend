@@ -1,4 +1,13 @@
 <div id="background-poker">
+  <div class="d-flex">
+    <div style="margin: .1rem" (click)="changeLanguage('en')">
+      <img src="assets/united-kingdom.png">
+    </div>
+
+    <div style="margin: .1rem" (click)="changeLanguage('pl')">
+      <img src="assets/poland.png">
+    </div>
+  </div>
   <app-user-settings class="user-settings-btn"></app-user-settings>
   <div class="center">
     <p class="title no-select">Planning Poker</p>

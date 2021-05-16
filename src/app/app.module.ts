@@ -41,10 +41,22 @@ export function initApp(http: HttpClient, translate: TranslateService) {
   return () => new Promise<boolean>((resolve: (res: boolean) => void) => {
 
     const defaultLocale = 'pl';
-    const translationsUrl = '/#/assets/i18n';
+    const translationsUrl = '/assets/i18n';
     const suffix = '.json';
     const storageLocale = localStorage.getItem('locale');
     const locale = storageLocale || defaultLocale;
+
+    http.get(`${translationsUrl}/${locale}${suffix}`).pipe(
+      catchError(() => of(null))
+    ).subscribe((translatedKeys: any) => {
+      translate.setTranslation(defaultLocale, translatedKeys || {});
+      translate.setTranslation(locale, translatedKeys || {}, true);
+
+      translate.setDefaultLang(defaultLocale);
+      translate.use(locale);
+
+      resolve(true);
+    });
 
     // forkJoin([
     //   http.get(`/assets/i18n/dev.json`).pipe(
@@ -53,21 +65,18 @@ export function initApp(http: HttpClient, translate: TranslateService) {
     //   http.get(`${translationsUrl}/${locale}${suffix}`).pipe(
     //     catchError(() => of(null))
     //   )
-    // ])
-    http.get(`${translationsUrl}/${locale}${suffix}`).pipe(
-      catchError(() => of(null))
-    ).subscribe((response: any[]) => {
-      const devKeys = response[0];
-      const translatedKeys = response[1];
-
-      translate.setTranslation(defaultLocale, devKeys || {});
-      translate.setTranslation(locale, translatedKeys || {}, true);
-
-      translate.setDefaultLang(defaultLocale);
-      translate.use(locale);
-
-      resolve(true);
-    });
+    // ]).subscribe((response: any[]) => {
+    //   const devKeys = response[0];
+    //   const translatedKeys = response[1];
+    //
+    //   translate.setTranslation(defaultLocale, devKeys || {});
+    //   translate.setTranslation(locale, translatedKeys || {}, true);
+    //
+    //   translate.setDefaultLang(defaultLocale);
+    //   translate.use(locale);
+    //
+    //   resolve(true);
+    // });
   });
 }
 

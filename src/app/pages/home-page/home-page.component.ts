@@ -19,4 +19,9 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  public changeLanguage(code: string): void {
+    localStorage.setItem('locale', code);
+    window.location.reload();
+  }
+
 }

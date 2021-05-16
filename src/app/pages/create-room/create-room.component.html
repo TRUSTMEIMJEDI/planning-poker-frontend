@@ -4,14 +4,14 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>{{ 'main.page.create.room-name' | translate }}</mat-label>
-        <input [(ngModel)]="roomName" matInput placeholder="Nazwa" type="text" maxlength="40">
+        <input [(ngModel)]="roomName" matInput placeholder="{{ 'main.page.create.room-name' | translate }}" type="text" maxlength="40">
         <mat-icon matSuffix>meeting_room</mat-icon>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>{{ 'main.page.create.user-name' | translate }}</mat-label>
-        <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text" maxlength="15">
+        <input [(ngModel)]="userName" matInput placeholder="{{ 'main.page.create.user-name' | translate }}" type="text" maxlength="15">
         <mat-icon matSuffix>attribution</mat-icon>
       </mat-form-field>
     </p>

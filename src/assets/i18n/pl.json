@@ -1,5 +1,5 @@
 {
-  "main.page.room.code": "{{ roomName }} | Kod: {{ roomKey }}",
+  "main.page.room.code": "{{name}} | Kod: {{key}}",
   "main.page.room.leave-room": "Wyjdź z pokoju",
   "main.page.room.reveal-cards": "Odkryj karty",
   "main.page.room.next-voting": "Następne głosowanie",
