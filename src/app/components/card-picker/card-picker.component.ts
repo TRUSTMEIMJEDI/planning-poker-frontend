@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Size} from '../../models/size';
-import {RoomType} from '../../models/room-type';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Size } from '../../models/size';
+import { RoomType } from '../../models/room-type';
 
 @Component({
-  selector: 'app-card-picker',
-  templateUrl: './card-picker.component.html',
-  styleUrls: ['./card-picker.component.scss']
+  selector : 'app-card-picker',
+  templateUrl : './card-picker.component.html',
+  styleUrls : [ './card-picker.component.scss' ]
 })
 export class CardPickerComponent implements OnInit {
 
@@ -15,8 +15,7 @@ export class CardPickerComponent implements OnInit {
 
   cards: Size[];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.initRoom();
@@ -32,7 +31,7 @@ export class CardPickerComponent implements OnInit {
   }
 
   private initRoom(): void {
-    if (this.roomType === RoomType[RoomType.T_SHIRTS]) {
+    if (this.roomType === RoomType[ RoomType.T_SHIRTS ]) {
       this.cards = [
         Size.XXS,
         Size.XS,
@@ -44,7 +43,7 @@ export class CardPickerComponent implements OnInit {
         Size.XXXL,
         Size.QUESTION
       ];
-    } else if (this.roomType === RoomType[RoomType.FIBONACCI]) {
+    } else if (this.roomType === RoomType[ RoomType.FIBONACCI ]) {
       this.cards = [
         Size.FIB_1,
         Size.FIB_2,
@@ -57,6 +56,13 @@ export class CardPickerComponent implements OnInit {
         Size.FIB_55,
         Size.FIB_89,
         Size.QUESTION
+      ];
+    } else if (this.roomType === RoomType[ RoomType.MOSCOW ]) {
+      this.cards = [
+        Size.MOSCOW_M,
+        Size.MOSCOW_S,
+        Size.MOSCOW_C,
+        Size.MOSCOW_W
       ];
     }
   }

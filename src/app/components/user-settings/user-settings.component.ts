@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RoomType } from '../../models/room-type';
+import { PokerService } from '../../services/poker.service';
 
 @Component({
   selector : 'app-user-settings',
@@ -24,13 +26,19 @@ export class UserSettingsComponent implements OnInit {
   observer: boolean;
   isInRoom: boolean;
   isChangeNameMode = false;
+  roomTypes = [
+    { roomType : RoomType.T_SHIRTS, desc : 'T-shirts' },
+    { roomType : RoomType.FIBONACCI, desc : 'Fibonacci' },
+    { roomType : RoomType.MOSCOW, desc : 'MOSCOW' }
+  ];
 
   private userSub$: Subscription;
 
   constructor(public userDataService: UserDataService,
               private userService: UserService,
               private router: Router,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private pokerService: PokerService) { }
 
   ngOnInit(): void {
     this.userSub$ = this.userDataService.currentUser.subscribe(() => {
@@ -102,6 +110,15 @@ export class UserSettingsComponent implements OnInit {
     this.changePassword(isInRoom);
   }
 
+  getCurrentRoomType(): string {
+    return RoomType[ this.userDataService.currentUserValue.roomType ];
+  }
+
+  changeRoomType(roomType: string): void {
+    this.pokerService.changeRoomType(RoomType[roomType], this.userDataService.currentUserValue.roomKey)
+      .subscribe();
+  }
+
   private init(): void {
     this.isInRoom = !!this.userDataService.currentUserValue?.roomKey;
     this.observer = this.userDataService.currentUserValue?.observer;
@@ -142,5 +159,4 @@ export class UserSettingsComponent implements OnInit {
       this.userDataService.logout();
     });
   }
-
 }

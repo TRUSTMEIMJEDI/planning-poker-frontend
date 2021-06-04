@@ -16,7 +16,8 @@ export class CreateRoomComponent implements OnInit {
   roomType: string;
   roomTypes = [
     { roomType : RoomType.T_SHIRTS, desc : 'T-shirts (XXS, XS, S, M, L, XL, 2XL, 3XL, ?)' },
-    { roomType : RoomType.FIBONACCI, desc : 'Fibonacci (0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?)' }
+    { roomType : RoomType.FIBONACCI, desc : 'Fibonacci (0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?)' },
+    { roomType : RoomType.MOSCOW, desc : 'MOSCOW (M, S, C, W)' }
   ];
 
   constructor(private pokerService: PokerService,
