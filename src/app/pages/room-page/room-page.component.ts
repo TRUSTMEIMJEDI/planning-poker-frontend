@@ -22,14 +22,16 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   roomKey: string;
   roomType: string;
   isRevealed = false;
+  loading = false;
   allowDeleteUsers = false;
   observer = false;
   selectedSize: Size;
-
   users: User[];
   answers: Size[];
+
   private roomSub$: Subscription;
   private revealSub$: Subscription;
+  private changeRoomTypeSub$: Subscription;
   private roomKickSub$: Subscription;
   private authSub$: Subscription;
 
@@ -56,6 +58,9 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     if (this.revealSub$) {
       this.revealSub$.unsubscribe();
     }
+    if (this.changeRoomTypeSub$) {
+      this.changeRoomTypeSub$.unsubscribe();
+    }
     if (this.authSub$) {
       this.authSub$.unsubscribe();
     }
@@ -74,8 +79,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
 
   deleteUser(user: User): void {
     this.pokerService.deleteUserFromRoom(user).subscribe(
-      () => {
-      },
+      () => {},
       error => {
         this.snackBar.open(error.error.message, 'OK', {
           duration : 2000
@@ -144,6 +148,8 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.authSub$ = this.userDataService.currentUser.subscribe(authData => {
       if (authData.observer !== this.observer) {
         this.observer = authData.observer;
+        this.selectedSize = null;
+        this.updateCard(null);
       }
     });
   }
@@ -168,6 +174,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.subscribeRoom();
     this.subscribeRoomReveal();
     this.subscribeRoomKick();
+    this.subscribeChangeRoomType();
   }
 
   private subscribeRoom(): void {
@@ -192,6 +199,21 @@ export class RoomPageComponent implements OnInit, OnDestroy {
         if (!this.isRevealed) {
           this.selectedSize = null;
         }
+      }
+    });
+  }
+
+  private subscribeChangeRoomType(): void {
+    this.changeRoomTypeSub$ = this.rxStompService.watch('/room/' + this.roomKey + '/changeType').subscribe((message: Message) => {
+      if (message.body) {
+        this.loading = true;
+        this.roomType = message.body;
+        this.selectedSize = null;
+        this.updateCard(null);
+        setTimeout(() => {
+          this.loading = false;
+        }, 200);
+
       }
     });
   }

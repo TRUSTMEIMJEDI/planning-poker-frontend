@@ -54,9 +54,11 @@
   </mat-grid-list>
 
   <div class="picker-container">
-    <app-card-picker (wasCardClicked)="updateCard($event)" *ngIf="!isRevealed && !observer"
+    <app-card-picker *ngIf="(!isRevealed && !observer && !loading)"
+                     (wasCardClicked)="updateCard($event)"
                      [selectedSize]="selectedSize"
-                     [roomType]="roomType"></app-card-picker>
+                     [roomType]="roomType">
+    </app-card-picker>
 
   </div>
 </div>

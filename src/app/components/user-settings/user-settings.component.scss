@@ -34,3 +34,20 @@ button {
   }
 
 }
+
+.mat-button-toggle-group {
+  display: flex;
+  justify-content: center;
+
+  .mat-button-toggle {
+    background-color: white;
+    color: black;
+    width:100%;
+  }
+
+  .mat-button-toggle-checked {
+    background-color: #2979FF;
+    color: white;
+  }
+
+}

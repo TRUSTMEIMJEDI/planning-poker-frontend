@@ -32,6 +32,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 import { MatMenuModule } from '@angular/material/menu';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {forkJoin, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -102,6 +103,7 @@ export function initApp(http: HttpClient, translate: TranslateService) {
     ClipboardModule,
     MatSliderModule,
     MatSnackBarModule,
+    MatButtonToggleModule,
     MatSlideToggleModule,
     MatInputModule,
     MatFormFieldModule,
