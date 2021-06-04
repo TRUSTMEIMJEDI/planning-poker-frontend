@@ -119,4 +119,8 @@ export class PokerService {
     return this.http.post<Room[]>(`${ BASE_URL }deleteRoom`, { password, roomKey }, httpOptions);
   }
 
+  changeRoomType(roomType: string, roomKey: string): Observable<any> {
+    return this.http.post<any>(`${ BASE_URL }changeRoomType`, { roomType, roomKey }, httpOptions);
+  }
+
 }
