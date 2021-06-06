@@ -33,6 +33,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MoscowResultShowerComponent } from './components/moscow-result-shower/moscow-result-shower.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations : [
@@ -47,7 +49,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     CardShowerComponent,
     VoteShowerComponent,
     AdminPageComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    MoscowResultShowerComponent
   ],
   imports : [
     BrowserModule,
@@ -68,7 +71,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     FormsModule,
     MatMenuModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   providers : [
     {

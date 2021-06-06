@@ -18,8 +18,8 @@ export enum Size {
   FIB_34 = '34',
   FIB_55 = '55',
   FIB_89 = '89',
-  MOSCOW_M = 'M',
-  MOSCOW_S = 'S',
-  MOSCOW_C = 'C',
-  MOSCOW_W = 'W'
+  MOSCOW_M = 'm',
+  MOSCOW_S = 's',
+  MOSCOW_C = 'c',
+  MOSCOW_W = 'w'
 }

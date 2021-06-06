@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserDataService } from '../../services/user-data.service';
+import { RoomType } from '../../models/room-type';
 
 @Component({
   selector : 'app-room-page',
@@ -210,10 +211,10 @@ export class RoomPageComponent implements OnInit, OnDestroy {
         this.roomType = message.body;
         this.selectedSize = null;
         this.updateCard(null);
+        this.cleanAnswers();
         setTimeout(() => {
           this.loading = false;
-        }, 200);
-
+        }, 50);
       }
     });
   }
@@ -248,6 +249,10 @@ export class RoomPageComponent implements OnInit, OnDestroy {
       ...this.users.find((item) => (item.name === itm.name) && item),
       ...itm
     }));
+  }
+
+  isMoscow(): boolean {
+    return this.roomType === RoomType[RoomType.MOSCOW];
   }
 
 }
