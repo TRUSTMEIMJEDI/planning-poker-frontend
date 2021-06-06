@@ -59,7 +59,9 @@
                      [selectedSize]="selectedSize"
                      [roomType]="roomType">
     </app-card-picker>
-
+    <app-moscow-result-shower *ngIf="isMoscow() && this.isRevealed"
+                              [answers]="this.answers">
+    </app-moscow-result-shower>
   </div>
 </div>
 

@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+  background-color: white;
+
+  th {
+    font-weight: bold;
+  }
+
+  td, th {
+    color: black;
+    border: 1px solid #ddd;
+    text-align-last: center;
+    padding: 0;
+
+    &.selected {
+      border: 2px solid red!important;
+    }
+  }
+
+}
