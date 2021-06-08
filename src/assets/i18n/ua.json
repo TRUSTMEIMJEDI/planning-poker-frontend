@@ -22,5 +22,7 @@
   "main.page.admin.room": "Назва кімнати: {{name}}, код кімнати: {{key}}",
   "main.component.settings.observer": "Спостерігач",
   "main.component.settings.deleting-users": "Видалити користувачів",
-  "main.component.settings.logout": "Вийти"
+  "main.component.settings.logout": "Вийти",
+  "main.component.moscow.people": "ЛЮДИ",
+  "main.component.moscow.sum": "Сума"
 }

@@ -2,7 +2,7 @@
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="people">
-      <th mat-header-cell *matHeaderCellDef style="width:20%"> OSOBY</th>
+      <th mat-header-cell *matHeaderCellDef style="width:20%"> {{ 'main.component.moscow.people' | translate }}</th>
       <td mat-cell *matCellDef="let element">
         {{ element.people }}
       </td>
@@ -43,7 +43,7 @@
     <ng-container matColumnDef="result">
       <td mat-footer-cell *matFooterCellDef colspan="5" class="w-100">
         <span style="font-size: 1.2rem">
-          Suma: <b>{{ sumAnswerValue }}</b>
+           {{ 'main.component.moscow.sum' | translate }}: <b>{{ sumAnswerValue }}</b>
           </span>
       </td>
     </ng-container>

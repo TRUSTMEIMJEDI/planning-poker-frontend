@@ -22,5 +22,7 @@
   "main.page.admin.room": "Room name: {{name}}, Room code: {{key}}",
   "main.component.settings.observer": "Observer",
   "main.component.settings.deleting-users": "Delete users",
-  "main.component.settings.logout": "Logout"
+  "main.component.settings.logout": "Logout",
+  "main.component.moscow.people": "PEOPLE",
+  "main.component.moscow.sum": "Sum"
 }

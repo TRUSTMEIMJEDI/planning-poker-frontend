@@ -22,5 +22,7 @@
   "main.page.admin.room": "Nazwa pokoju: {{name}}, Kod pokoju: {{key}}",
   "main.component.settings.observer": "Obserwator",
   "main.component.settings.deleting-users": "Usuwanie użytkowników",
-  "main.component.settings.logout": "Wyloguj się"
+  "main.component.settings.logout": "Wyloguj się",
+  "main.component.moscow.people": "OSOBY",
+  "main.component.moscow.sum": "Suma"
 }
