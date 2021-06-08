@@ -59,10 +59,10 @@ export class CardPickerComponent implements OnInit {
       ];
     } else if (this.roomType === RoomType[ RoomType.MOSCOW ]) {
       this.cards = [
-        Size.MOSCOW_M,
-        Size.MOSCOW_S,
+        Size.MOSCOW_W,
         Size.MOSCOW_C,
-        Size.MOSCOW_W
+        Size.MOSCOW_S,
+        Size.MOSCOW_M
       ];
     }
   }

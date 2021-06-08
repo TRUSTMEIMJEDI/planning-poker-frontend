@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -12,7 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RoomPageComponent } from './pages/room-page/room-page.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './components/card/card.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { CardPickerComponent } from './components/card-picker/card-picker.component';
@@ -33,9 +33,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import {TranslateModule, TranslateService} from '@ngx-translate/core';
-import {forkJoin, of} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import { MoscowResultShowerComponent } from './components/moscow-result-shower/moscow-result-shower.component';
+import { MatTableModule } from '@angular/material/table';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { forkJoin, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 // tslint:disable-next-line:typedef
 export function initApp(http: HttpClient, translate: TranslateService) {
@@ -94,7 +96,8 @@ export function initApp(http: HttpClient, translate: TranslateService) {
     CardShowerComponent,
     VoteShowerComponent,
     AdminPageComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    MoscowResultShowerComponent
   ],
   imports : [
     BrowserModule,
@@ -116,6 +119,7 @@ export function initApp(http: HttpClient, translate: TranslateService) {
     MatMenuModule,
     MatOptionModule,
     MatSelectModule,
+    MatTableModule,
     TranslateModule.forRoot()
   ],
   providers : [
