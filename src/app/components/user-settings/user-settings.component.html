@@ -50,12 +50,24 @@
     <mat-button-toggle-group *ngIf="isInRoom">
       <mat-button-toggle *ngFor="let type of roomTypes; let i = index"
                          [checked]="type.roomType === this.getCurrentRoomType()"
-      (change)="changeRoomType(type.roomType)">
+                         (change)="changeRoomType(type.roomType)">
         {{ type.desc }}
       </mat-button-toggle>
     </mat-button-toggle-group>
 
-    <button mat-menu-item class="h-100 w-100" (click)="logout()">
+    <button *ngIf="isInRoom"
+            mat-menu-item class="h-100 w-100"
+            (click)="leaveRoom()">
+      <mat-icon>
+        exit_to_app
+      </mat-icon>
+      <span>
+      Wyjdź z pokoju
+    </span>
+    </button>
+
+    <button mat-menu-item class="h-100 w-100"
+            (click)="logout()">
       <mat-icon>
         logout
       </mat-icon>
