@@ -67,6 +67,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this.allowDeleteUsersEvent.emit(this.allowDeleteUsers);
   }
 
+
   logout(): void {
     const url = window.location.origin;
     if ('home'.match(url)) {
@@ -129,6 +130,19 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  leaveRoom(): void {
+    this.pokerService.leaveRoom()
+      .subscribe(() => {
+          this.router.navigate([ '/home' ]).then(() => {
+            this.userDataService.leaveRoom();
+          });
+        },
+        () => {
+          this.userDataService.leaveRoom();
+        }
+      );
+  }
+
   private init(): void {
     this.isInRoom = !!this.userDataService.currentUserValue?.roomKey;
     this.observer = this.userDataService.currentUserValue?.observer;
@@ -178,4 +192,5 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       this.userDataService.logout();
     });
   }
+
 }
