@@ -1,5 +1,5 @@
 {
-  "main.page.room.code": "{{name}} | Code: {{key}}",
+  "main.page.room.code": "Code: {{key}}",
   "main.page.room.leave-room": "Leave room",
   "main.page.room.reveal-cards": "Reveal cards",
   "main.page.room.next-voting": "Next voting",

@@ -113,16 +113,6 @@ export class RoomPageComponent implements OnInit, OnDestroy {
     this.pokerService.sendAnswer(this.selectedSize);
   }
 
-  leaveRoom(): void {
-    this.pokerService.leaveRoom().subscribe(() => {
-        this.routeToHomeAndLogout();
-      },
-      () => {
-        this.routeToHomeAndLogout();
-      }
-    );
-  }
-
   @HostListener('window:beforeunload')
   leaveRoomOnCloseTab(): void {
     this.pokerService.leaveRoom().subscribe(() => {
@@ -252,7 +242,7 @@ export class RoomPageComponent implements OnInit, OnDestroy {
   }
 
   isMoscow(): boolean {
-    return this.roomType === RoomType[RoomType.MOSCOW];
+    return this.roomType === RoomType[ RoomType.MOSCOW ];
   }
 
 }

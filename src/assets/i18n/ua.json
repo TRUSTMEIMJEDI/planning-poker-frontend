@@ -1,5 +1,5 @@
 {
-  "main.page.room.code": "{{name}} | Код: {{key}}",
+  "main.page.room.code": "Код: {{key}}",
   "main.page.room.leave-room": "Залишити кімнату",
   "main.page.room.reveal-cards": "Розкрити картки",
   "main.page.room.next-voting": "Наступне голосування",
