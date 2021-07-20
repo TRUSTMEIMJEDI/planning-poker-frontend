@@ -1,5 +1,5 @@
 import { InjectableRxStompConfig } from '@stomp/ng2-stompjs';
-import { PokerUtils } from '../../utils/poker-utils';
+import { PokerUtils } from './utils/poker-utils';
 
 export const myRxStompConfig: InjectableRxStompConfig = {
   // Which server?
