@@ -1,6 +1,5 @@
 {
   "main.page.room.code": "Code: {{key}}",
-  "main.page.room.leave-room": "Leave room",
   "main.page.room.reveal-cards": "Reveal cards",
   "main.page.room.next-voting": "Next voting",
   "main.page.join.room-code": "Give room key",
@@ -22,6 +21,7 @@
   "main.page.admin.room": "Room name: {{name}}, Room code: {{key}}",
   "main.component.settings.observer": "Observer",
   "main.component.settings.deleting-users": "Delete users",
+  "main.component.settings.leave-room": "Leave room",
   "main.component.settings.logout": "Logout",
   "main.component.moscow.people": "PEOPLE",
   "main.component.moscow.sum": "Sum"
