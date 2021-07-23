@@ -3,7 +3,7 @@
     <div class="col-xl-6 col-7  d-flex">
       <div class="px-2 room-info text-truncate">
         <div> {{ roomName }} </div>
-        <div> {{ 'main.page.room.code' | translate:{ key: roomKey } }} </div>
+        <div> {{ 'main.page.room.code' | translate:{key: roomKey} }} </div>
       </div>
       <button [cdkCopyToClipboard]="getShareLink()"
               (click)="snackBarOpen()"
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="row g-0" style="height: 9rem">
+  <div class="row g-0" style="height: 8rem">
     <div class="card-shower-top-row col-xl-8 col-10 offset-xl-2 offset-1">
       <app-card-shower [activeUser]="pokerService.currentUserValue.userName"
                        [users]="users1"
@@ -29,7 +29,8 @@
   </div>
   <div class="row g-0 vote-shower-row">
     <div class="col-xl-6 col-10 offset-xl-3 offset-1">
-      <div class="table blue-scroll">
+      <div class="table blue-scroll"
+           [ngStyle]="{'align-items': !isRevealed ? 'center': null}">
         <button *ngIf="!isRevealed"
                 class="show-cards-btn"
                 (click)="showCards()"
@@ -48,7 +49,7 @@
       </div>
     </div>
   </div>
-  <div class="row g-0 pt-4">
+  <div class="row g-0 pt-md-4 pt-1">
     <div class="card-shower-bottom-row col-xl-8 col-10 offset-xl-2 offset-1">
       <app-card-shower [activeUser]="pokerService.currentUserValue.userName"
                        [users]="users2"
