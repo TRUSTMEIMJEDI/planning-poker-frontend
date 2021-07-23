@@ -3,24 +3,17 @@
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  overflow: hidden;
 
-  .room-info-container {
-    display: flex;
-    align-items: center;
+  .vote-shower-row {
+    height: 17rem;
   }
 
-  .top-container {
-    margin: 20px 20px 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    span {
-      color: black;
-      font-size: 1.6rem;
-      font-weight: bold;
-    }
-
+  .room-info {
+    color: black;
+    font-size: 1.1rem;
+    line-height: normal;
+    font-weight: bold;
   }
 
   .table {
@@ -30,7 +23,7 @@
     background: #d7e9ff;
     border-radius: 2.8rem;
     height: 100%;
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
 
     display: flex;
@@ -66,7 +59,13 @@
 
   }
 
-  .picker-container {
-    margin: 50px 35% 0 35%;
+  .card-picker-row, .vote-shower-row {
+    overflow-x: auto;
+    white-space: nowrap;
   }
+
+  .card-picker-row {
+    padding-top: 10px;
+  }
+
 }

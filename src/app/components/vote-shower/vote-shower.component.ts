@@ -13,8 +13,7 @@ export class VoteShowerComponent implements OnInit {
 
   uniqueSizes: Size[];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.uniqueSizes = [ ...new Set(this.sizes) ].sort(EnumUtils.getSizeCompareFn());

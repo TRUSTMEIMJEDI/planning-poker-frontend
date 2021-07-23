@@ -2,21 +2,21 @@
   <div *ngIf="!allowed" class="main-container">
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>Podaj hasło</mat-label>
-        <input [(ngModel)]="password" matInput placeholder="Hasło" type="password">
+        <mat-label>{{ 'main.page.admin.password' | translate }}</mat-label>
+        <input [(ngModel)]="password" matInput placeholder="{{ 'main.page.admin.password' | translate }}" type="password">
         <mat-icon matSuffix>password</mat-icon>
-        <mat-hint>Podaj hasło</mat-hint>
+        <mat-hint>{{ 'main.page.admin.password' | translate }}</mat-hint>
       </mat-form-field>
     </p>
     <button (click)="login()" color="primary" mat-raised-button>
-      Wejdź
+      {{ 'main.page.admin.enter' | translate }}
     </button>
   </div>
   <div *ngIf="allowed" class="main-container">
-    <button (click)="getRooms()" color="primary" mat-raised-button style="margin-bottom: .5rem">Odśwież</button>
+    <button (click)="getRooms()" color="primary" mat-raised-button style="margin-bottom: .5rem">{{ 'main.page.admin.refresh' | translate }}</button>
     <div *ngFor="let room of rooms; let i = index" class="room-row">
-      <li>Nazwa pokoju: {{ room.name }}, Kod pokoju: {{ room.key }}</li>
-      <button (click)="deleteRoom(rooms[i].key)" color="secondary" mat-raised-button>Usuń pokój</button>
+      <li>{{ 'main.page.admin.room' | translate: { name: room.name, key: room.key } }}</li>
+      <button (click)="deleteRoom(rooms[i].key)" color="secondary" mat-raised-button>{{ 'main.page.admin.delete-room' | translate }}</button>
     </div>
   </div>
 </div>

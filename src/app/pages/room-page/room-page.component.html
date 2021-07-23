@@ -1,67 +1,74 @@
 <div class="main-container">
-  <div class="top-container">
-    <div class="room-info-container">
-      <span>
-        {{ roomName }} | Kod: {{ roomKey }}
-      </span>
+  <div class="row pt-2 px-3 g-xl-0 justify-content-center">
+    <div class="col-xl-6 col-7  d-flex">
+      <div class="px-2 room-info text-truncate">
+        <div> {{ roomName }} </div>
+        <div> {{ 'main.page.room.code' | translate:{ key: roomKey } }} </div>
+      </div>
       <button [cdkCopyToClipboard]="getShareLink()"
               (click)="snackBarOpen()"
               style="margin-left: 5px" mat-button>
         <mat-icon>share</mat-icon>
       </button>
     </div>
-    <div class="d-flex">
-      <app-user-settings [allowDeleteUsers]="allowDeleteUsers"
-                         (allowDeleteUsersEvent)="setAllowDeleteUsers($event)"></app-user-settings>
-      <button (click)="leaveRoom()" mat-raised-button>Wyjdź z pokoju</button>
+    <div class="col-xl-6 col-4">
+      <div class="d-flex justify-content-end">
+        <app-user-settings [allowDeleteUsers]="allowDeleteUsers"
+                           (allowDeleteUsersEvent)="setAllowDeleteUsers($event)">
+        </app-user-settings>
+      </div>
     </div>
   </div>
-  <mat-grid-list cols="8" rowHeight="10rem">
-    <mat-grid-tile [colspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="4">
+  <div class="row g-0" style="height: 9rem">
+    <div class="card-shower-top-row col-xl-8 col-10 offset-xl-2 offset-1">
       <app-card-shower [activeUser]="pokerService.currentUserValue.userName"
                        [users]="users1"
                        [allowDeleteUsers]="allowDeleteUsers"
                        (deleteUserEvent)="deleteUser($event)"></app-card-shower>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="4" [rowspan]="2">
-      <div class="table">
+    </div>
+  </div>
+  <div class="row g-0 vote-shower-row">
+    <div class="col-xl-6 col-10 offset-xl-3 offset-1">
+      <div class="table blue-scroll">
         <button *ngIf="!isRevealed"
                 class="show-cards-btn"
                 (click)="showCards()"
                 mat-raised-button>
-          <span>Odkryj karty</span>
+          <span>{{ 'main.page.room.reveal-cards' | translate }}</span>
         </button>
-        <app-vote-shower *ngIf="isRevealed" [sizes]="answers"></app-vote-shower>
+        <app-vote-shower *ngIf="isRevealed"
+                         [sizes]="answers">
+        </app-vote-shower>
+
         <div *ngIf="isRevealed"
              (click)="cleanAnswers()"
              class="next-voting-btn">
-          <span class="no-select">Następne głosowanie</span>
+          <span class="no-select">{{ 'main.page.room.next-voting' | translate }}</span>
         </div>
       </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="2"></mat-grid-tile>
-    <mat-grid-tile [colspan]="4">
+    </div>
+  </div>
+  <div class="row g-0 pt-4">
+    <div class="card-shower-bottom-row col-xl-8 col-10 offset-xl-2 offset-1">
       <app-card-shower [activeUser]="pokerService.currentUserValue.userName"
                        [users]="users2"
                        [allowDeleteUsers]="allowDeleteUsers"
                        (deleteUserEvent)="deleteUser($event)"></app-card-shower>
-    </mat-grid-tile>
+    </div>
     <mat-grid-tile [colspan]="2"></mat-grid-tile>
-  </mat-grid-list>
+  </div>
 
-  <div class="picker-container">
-    <app-card-picker *ngIf="(!isRevealed && !observer && !loading)"
-                     (wasCardClicked)="updateCard($event)"
-                     [selectedSize]="selectedSize"
-                     [roomType]="roomType">
-    </app-card-picker>
-    <app-moscow-result-shower *ngIf="isMoscow() && this.isRevealed"
-                              [answers]="this.answers">
-    </app-moscow-result-shower>
+  <div class="row col-xl-6 col-10 offset-xl-3 offset-1 card-picker-row blue-scroll">
+    <div class="card-picker-row w-100 h-100 pb-1">
+      <app-card-picker *ngIf="(!isRevealed && !observer && !loading)"
+                       (wasCardClicked)="updateCard($event)"
+                       [selectedSize]="selectedSize"
+                       [roomType]="roomType">
+      </app-card-picker>
+      <app-moscow-result-shower *ngIf="isMoscow() && isRevealed"
+                                [answers]="answers">
+      </app-moscow-result-shower>
+    </div>
   </div>
 </div>
 

@@ -3,21 +3,21 @@
   <div (keyup.enter)="createRoom()" class="center no-select">
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>Podaj nazwę pokoju</mat-label>
-        <input [(ngModel)]="roomName" matInput placeholder="Nazwa" type="text" maxlength="40">
+        <mat-label>{{ 'main.page.create.room-name' | translate }}</mat-label>
+        <input [(ngModel)]="roomName" matInput placeholder="{{ 'main.page.create.room-name' | translate }}" type="text" maxlength="40">
         <mat-icon matSuffix>meeting_room</mat-icon>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>Podaj pseudonim</mat-label>
-        <input [(ngModel)]="userName" matInput placeholder="Pseudonim" type="text" maxlength="15">
+        <mat-label>{{ 'main.page.create.user-name' | translate }}</mat-label>
+        <input [(ngModel)]="userName" matInput placeholder="{{ 'main.page.create.user-name' | translate }}" type="text" maxlength="15">
         <mat-icon matSuffix>attribution</mat-icon>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>System głosowania</mat-label>
+        <mat-label>{{ 'main.page.create.voting-system' | translate }}</mat-label>
         <mat-select [(value)]="roomType">
           <mat-option *ngFor="let type of roomTypes; let i = index" value="{{ getRoomTypeString(type.roomType) }}">
             {{ type.desc }}
@@ -27,11 +27,11 @@
     </p>
     <div style="display: flex; flex-direction: column">
       <button (click)="createRoom()" color="primary" mat-raised-button>
-        Utwórz pokój
+        {{ 'main.page.create.create-room-button' | translate }}
       </button>
       <br>
       <button color="secondary" mat-raised-button routerLink="/home">
-        Wstecz
+        {{ 'main.page.create.return-button' | translate }}
       </button>
     </div>
   </div>
