@@ -6,7 +6,8 @@
   overflow: hidden;
 
   .vote-shower-row {
-    height: 17rem;
+    height: 30vh;
+    min-height: 13rem;
   }
 
   .room-info {
@@ -26,9 +27,12 @@
     width: 100%;
     margin: 0 auto;
 
+      @media (max-width: 576px) and (min-width: 1px) {
+        align-items: baseline;
+    }
+
     display: flex;
     justify-content: center;
-    align-items: center;
 
     .show-cards-btn {
       font-size: 1.1rem;
