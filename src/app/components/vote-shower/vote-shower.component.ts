@@ -10,6 +10,7 @@ import { EnumUtils } from '../../utils/enum-utils';
 export class VoteShowerComponent implements OnInit {
 
   @Input() sizes: Size[];
+  @Input() roomType: string;
 
   uniqueSizes: Size[];
 

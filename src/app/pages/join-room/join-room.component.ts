@@ -46,7 +46,9 @@ export class JoinRoomComponent implements OnInit {
     }
 
     this.pokerService.joinRoom(this.roomKey, this.userName, this.observer).subscribe(() => {
-        this.router.navigate([ '/room' ]);
+        setTimeout(() => {
+          this.router.navigate([ '/room' ]);
+        }, 100);
       },
       error => {
         this.snackBar.open(error.error.message, 'OK', {

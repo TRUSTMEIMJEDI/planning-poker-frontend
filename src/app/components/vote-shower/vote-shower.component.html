@@ -1,7 +1,10 @@
 <div *ngFor="let size of uniqueSizes"
      class="main-container no-select">
   <div *ngIf="size != null">
-    <app-card [text]="getSizeText(size)"></app-card>
+    <app-card
+      [text]="getSizeText(size)"
+      [roomType]="roomType">
+    </app-card>
     <span>{{ countSize(size) }}</span>
   </div>
 </div>

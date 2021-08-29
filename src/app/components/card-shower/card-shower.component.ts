@@ -11,6 +11,7 @@ export class CardShowerComponent {
   @Input() users: User[];
   @Input() activeUser: string;
   @Input() allowDeleteUsers: boolean;
+  @Input() roomType: string;
 
   @Output() deleteUserEvent = new EventEmitter<User>();
 
