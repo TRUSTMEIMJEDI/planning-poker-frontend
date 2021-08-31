@@ -3,6 +3,7 @@
     <app-user-card [cardStyle]="getCardStyle(user)"
                    [observer]="user.observer"
                    [size]="user.size"
+                   [roomType]="roomType"
                    [userName]="user.name"
                    [allowDeleteUsers]="allowDeleteUsers && !isActiveUser(user)"
                    (deleteUserEvent)="findUserAndDispatchDelete($event)">

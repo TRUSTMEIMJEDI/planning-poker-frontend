@@ -4,7 +4,7 @@
   align-items: center;
   width: 3.5rem;
   height: 6rem;
-  border-radius: .8rem;
+  border-radius: .6rem;
   border: 2px solid #3993ff;
   outline: 0;
   cursor: pointer;
@@ -12,6 +12,12 @@
   color: #3993ff;
   font-size: 1.3rem;
   font-weight: bold;
+
+  span {
+    position: absolute;
+    bottom: 0;
+    font-size: .6rem;
+  }
 
   &.selected {
     color: #fff;

@@ -10,6 +10,7 @@ export class CardComponent {
 
   @Input() text: Size;
   @Input() size: Size;
+  @Input() roomType: string;
 
   @Output() wasCardClicked = new EventEmitter<Size>();
 

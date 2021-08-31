@@ -2,4 +2,12 @@
         [ngClass]="{'selected': text === size}"
         class="card">
   {{ text }}
+  <span *ngIf="roomType==='MOSCOW'">
+    <div [ngSwitch]="true">
+      <div *ngSwitchCase="text === 'w'">WON'T</div>
+      <div *ngSwitchCase="text === 'c'">COULD</div>
+      <div *ngSwitchCase="text === 's'">SHOULD</div>
+      <div *ngSwitchCase="text === 'm'">MUST</div>
+    </div>
+  </span>
 </button>

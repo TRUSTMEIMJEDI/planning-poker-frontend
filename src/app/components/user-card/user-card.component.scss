@@ -6,6 +6,10 @@
   font-size: 1rem;
   font-weight: bold;
 
+  button:hover {
+    cursor: default;
+  }
+
   .delete-user {
     height: 16px;
     width: 16px;
@@ -54,8 +58,8 @@
 
   .card-showed {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 3.5rem;
     height: 6rem;
     border-radius: .6rem;
@@ -67,6 +71,14 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border: 2px solid #3993ff;
+
+    span {
+      bottom: 0;
+      left:auto;
+      right: auto;
+      position: absolute;
+      font-size: .6rem;
+    }
 
     &.active {
       border: 3px solid #FF394A !important;

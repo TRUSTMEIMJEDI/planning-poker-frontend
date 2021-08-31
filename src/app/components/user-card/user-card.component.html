@@ -1,11 +1,22 @@
 <div class="main-container no-select">
-  <button *ngIf="allowDeleteUsers" class="delete-user" (click)="deleteUserByName()">X</button>
+  <button *ngIf="allowDeleteUsers"
+          class="delete-user"
+          (click)="deleteUserByName()">X
+  </button>
   <div *ngIf="!observer">
-    <div class="card-{{ cardStyle }}">
-      <div *ngIf="cardStyle.match('showed')">
+    <button class="card-{{ cardStyle }} position-relative">
+      <div *ngIf="cardStyle.match('showed')" class="">
         {{ getSizeText(size) }}
       </div>
-    </div>
+      <span *ngIf="roomType==='MOSCOW' && cardStyle.match('showed')">
+        <div [ngSwitch]="true">
+          <div *ngSwitchCase="getSizeText(size) === 'w'">WON'T</div>
+          <div *ngSwitchCase="getSizeText(size) === 'c'">COULD</div>
+          <div *ngSwitchCase="getSizeText(size) === 's'">SHOULD</div>
+          <div *ngSwitchCase="getSizeText(size) === 'm'">MUST</div>
+        </div>
+      </span>
+    </button>
   </div>
   <div *ngIf="observer" class="card-{{ cardStyle }}">
     <div class="card-observer">

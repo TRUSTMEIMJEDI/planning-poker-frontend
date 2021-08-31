@@ -11,6 +11,7 @@ export class UserCardComponent {
   @Input() cardStyle: string;
   @Input() size: Size;
   @Input() userName: string;
+  @Input() roomType: string;
   @Input() observer: boolean;
   @Input() allowDeleteUsers: boolean;
 
