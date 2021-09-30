@@ -45,11 +45,12 @@
       width: 100%;
       background: #393737;
       position: absolute;
-      height: 4rem;
+      height: 3rem;
       border-radius: 0 0 2.8rem 2.8rem;
       color: white;
-      text-align: center;
-      padding-top: 1.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       span {
         font-size: 1.3rem;
